@@ -1038,7 +1038,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
       stop("Error: symbol, ensemble or entrez are not provided in the first column")
     }
-    ID_conv <- ID_conversion_TALL_BC
+    ID_conv <- ID_conversion_TALL_Markers
     # select the genes used for classifier trainig
     ma <- match(ID_conv[,match(ID_class, colnames(ID_conv))], rownames(Counts))
     Counts <- Counts[ma[!is.na(ma)],,drop = F]
