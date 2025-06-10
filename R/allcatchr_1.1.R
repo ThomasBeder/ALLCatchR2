@@ -1071,7 +1071,8 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     # save predictions
     cat("Writing output file:",paste0(out.file),"...\n")
     utils::write.table(output,out.file, sep = sep, row.names = F)
-    return(output)
-    return(TALL_marker_exp)
+    return(list(output = output,
+               TALL_marker_exp = TALL_marker_exp))
+
     }
 }
