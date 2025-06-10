@@ -1026,7 +1026,41 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
    
     preds_TALL_BC$sample <- rownames(preds_TALL_BC)
                                                                         
+    ################################################################################
+    ###### create T-ALL marker gene expression summary #############################
+    ################################################################################
+    if(is.na(Counts.file)){
+      Counts <- test_data
+     }else{
+      Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1, check.names = F)
+    }
+    
+    if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
+      stop("Error: symbol, ensemble or entrez are not provided in the first column")
+    }
+    ID_conv <- ID_conversion_TALL_BC
+    # select the genes used for classifier trainig
+    ma <- match(ID_conv[,match(ID_class, colnames(ID_conv))], rownames(Counts))
+    Counts <- Counts[ma[!is.na(ma)],,drop = F]
+    
+    # convert to symbol (classifier was trained on symbols)
+    ma <- match(rownames(Counts), ID_conv[,match(ID_class, colnames(ID_conv))])
+    Counts <- Counts[!is.na(ma),,drop = F]
+    ma <- match(rownames(Counts), ID_conv[,match(ID_class, colnames(ID_conv))])
+    rownames(Counts) <- ID_conv$symbol[ma]
+    
+    # normalize data and scale between 0 and 1
+    Counts.norm <- Counts+1
+    Counts.norm <- apply(Counts.norm, 2, log10)
+    Counts.norm <- apply(Counts.norm, 2, scale)
 
+    rownames(Counts.norm) <- rownames(Counts)
+    colnames(Counts.norm) <- colnames(Counts)
+
+    # select marker genes in T-ALL samples                                                                       
+    ma <- match(TALL_marker_exp$gene, rownames(Counts.norm))
+    TALL_marker_exp <- as.data.frame(cbind(TALL_marker_exp, Counts.norm[ma,]))                                                                  
+                                                                        
     ################################################################################
     ###### finalize output table ###################################################
     ################################################################################
@@ -1038,6 +1072,6 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     cat("Writing output file:",paste0(out.file),"...\n")
     utils::write.table(output,out.file, sep = sep, row.names = F)
     return(output)
-    
+    return(TALL_marker_exp)
     }
 }
