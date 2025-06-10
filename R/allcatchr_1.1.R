@@ -954,8 +954,36 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     #}
     colnames(TotalScore_scaled) <- colnames(TotalScore)
     utils::head(TotalScore_scaled)
-    
-    output <- as.data.frame(cbind(output, TotalScore_scaled))
+
+    ################################################################################
+    ###### T-ALL blast count prediction ############################################
+    ################################################################################
+    preds_TALL_BC <- list()
+    train <- 1
+    for (j in 1:length(models_TALL_BC)) {
+      preds <- list()
+      for (i in 1:length(train)) {
+        preds[[i]] <- predict(models_TALL_BC[[j]][[i]], Counts.norm)
+      }
+      preds <- do.call("cbind", preds)
+      preds <- apply(preds, 1, mean)
+      
+      preds_TALL_BC[[j]] <- preds
+    }
+    preds_TALL_BC <- do.call("cbind", preds_TALL_BC)
+    colnames(preds_TALL_BC) <- names(models_TALL_BC)
+    preds_TALL_BC <- as.data.frame(preds_TALL_BC)
+       
+    preds_TALL_BC$integrated <- apply(preds_TALL_BC[,1:4], 1, mean)
+   
+    preds_TALL_BC$sample <- rownames(preds_TALL_BC)
+                                                                        
+
+    ################################################################################
+    ###### finalize output table ###################################################
+    ################################################################################
+                                                                           
+    output <- as.data.frame(cbind(output, BC_pred = preds_TALL_BC$integrated, TotalScore_scaled))
     
     cat("predictions saved in:", getwd(),"\n")
     # save predictions
