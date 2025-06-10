@@ -78,3 +78,12 @@
 #' @usage data(TALL_subtype_model_list)
 #'
 "TALL_subtype_model_list"
+
+#' classification T-ALL BC model
+#'
+#' model used for BC predictions including cross-validation
+#'
+#' @format list with different prediction models
+#' @usage data(models_TALL_BC)
+#'
+"models_TALL_BC"
