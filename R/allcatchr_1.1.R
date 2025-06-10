@@ -958,6 +958,54 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     ################################################################################
     ###### T-ALL blast count prediction ############################################
     ################################################################################
+     if(is.na(Counts.file)){
+      Counts <- test_data
+     }else{
+      Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1, check.names = F)
+    }
+    
+    if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
+      stop("Error: symbol, ensemble or entrez are not provided in the first column")
+    }
+    ID_conv <- ID_conversion_TALL_BC
+    # select the genes used for classifier trainig
+    ma <- match(ID_conv[,match(ID_class, colnames(ID_conv))], rownames(Counts))
+    Counts <- Counts[ma[!is.na(ma)],,drop = F]
+    
+    # convert to symbol (classifier was trained on symbols)
+    ma <- match(rownames(Counts), ID_conv[,match(ID_class, colnames(ID_conv))])
+    Counts <- Counts[!is.na(ma),,drop = F]
+    ma <- match(rownames(Counts), ID_conv[,match(ID_class, colnames(ID_conv))])
+    rownames(Counts) <- ID_conv$symbol[ma]
+    
+    # normalize data and scale between 0 and 1
+    Counts.norm <- Counts+1
+    Counts.norm <- apply(Counts.norm, 2, log10)
+    Counts.norm <- apply(Counts.norm, 2, scale)
+  
+    # transpose data
+    Counts.norm <- as.data.frame(t(Counts.norm))
+    colnames(Counts.norm) <- rownames(Counts)
+    colnames(Counts.norm) <- colnames(Counts.norm)
+    
+    # find genes not provided by user
+    ma <- match(ID_conv$symbol, rownames(Counts))
+    GenesNoFound <- ID_conv$symbol[is.na(ma)]
+    
+    # Print number of missing genes
+    cat(paste0(length(GenesNoFound)), " of ", nrow(ID_conv), " genes not found\n")
+    if ((length(GenesNoFound)) > 0) {
+      cat("impute missing genes...\n")
+    }
+    
+    # impute missing genes
+    GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)], nrow = nrow(Counts.norm), ncol = length(GenesNoFound))
+    colnames(GenesNoFound_df) <- GenesNoFound
+    Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
+                                                                           
+                                                                           
+                                                                           
+                                                                           
     preds_TALL_BC <- list()
     train <- 1
     for (j in 1:length(models_TALL_BC)) {
