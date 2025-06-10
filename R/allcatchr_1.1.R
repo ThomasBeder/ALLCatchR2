@@ -1060,7 +1060,8 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     # select marker genes in T-ALL samples                                                                       
     ma <- match(TALL_marker_exp$gene, rownames(Counts.norm))
     TALL_marker_exp <- as.data.frame(cbind(TALL_marker_exp, Counts.norm[ma,]))                                                                  
-                                                                        
+    rownames(TALL_marker_exp) <- 1:nrow(TALL_marker_exp)
+                                                                           
     ################################################################################
     ###### finalize output table ###################################################
     ################################################################################
