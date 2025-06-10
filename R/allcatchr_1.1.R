@@ -22,6 +22,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
   loadNamespace("randomForest")
   loadNamespace("LiblineaR")
   loadNamespace("glmnet")
+  loadNamespace("elasticnet")  
   
   if (Lineage == "B-ALL") {
   
