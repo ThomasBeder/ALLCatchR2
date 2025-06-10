@@ -1,4 +1,4 @@
-globalVariables(c("test_data","models_20","NH","BC_model_GMALL","BC_model_MLL","models_L_sex","models_L_Immuno", "bcrabl1_models", "TALL_subtype_model_list"))
+globalVariables(c("test_data","models_20","NH","BC_model_GMALL","BC_model_MLL","models_L_sex","models_L_Immuno", "bcrabl1_models", "TALL_subtype_model_list", "models_TALL_BC"))
 
 #' @title Classifiction
 #'
