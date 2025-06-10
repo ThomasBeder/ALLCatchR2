@@ -21,7 +21,8 @@ Imports:
     randomForest,
     ranger,
     glmnet,
-    caTools
+    caTools,
+    elasticnet
 Suggests:
     knitr,
     rmarkdown
