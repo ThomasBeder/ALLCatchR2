@@ -1,20 +1,21 @@
-# ALLCatchRbcrabl1
-
-_This is an update of the gene expression based BCP-ALL subtype classifier **ALLCatchR** (https://github.com/ThomasBeder/ALLCatchR) including the sublcuster identification of Ph-pos (BCR::ABL1). ‘Multilineage’ vs. ‘lymphoid-only’ BCR::ABL1 involvement and distinct cooperating events determine gene expression in BCR::ABL1-positive ALL._
+# ALLCatchR2
+This is a test version for ALLCatcR2 and we are happy for any inssues or unexprected behavior that is reported as a feedback to us.
+_This is an update of the gene expression based BCP-ALL subtype classifier **ALLCatchR** (https://github.com/ThomasBeder/ALLCatchR) including subtype predictions for T-ALL. T-ALL subtypes were identified based on an analysis of 2049 samples from 13 cohorts.
 
 # links to References
-- _BCR::ABL1_ subcluster https://ash.confex.com/ash/2023/webprogram/Paper187315.html
+- _BCR::ABL1_ subcluster https://ashpublications.org/blood/article/143/14/1391/506890/Developmental-trajectories-and-cooperating-genomic
 - ALLCatchR - https://journals.lww.com/hemasphere/fulltext/2023/09000/the_gene_expression_classifier_allcatchr.7.aspx
 
 
-_ALLCatchRbcrabl1_ was developed to predict:
+_ALLCatchR2_ was developed to predict:
+- 20 T-ALL gene expression subtypes and a driver overarching definition of immature T-ALL / ETP-like
 - 21 BCP-ALL molecular subtypes (_BCL2/MYC_, _CDX2/UBTF_, _CEBP_, _DUX4_, _ETV6::RUNX1_, _ETV6::RUNX1-like_, _HLF_, Hyperdiploid, iAMP21, _IKZF1 N159Y_, _KMT2A_, Low hypodiploid, _MEF2D_, Near haploid, _NUTM1_, _PAX5 P80R_, _PAX5alt_, _Ph-like_, _Ph-pos_, _TCF3::PBX1_, _ZNF384_)
 - Two _BCR::ABL1_ main gene expression clusters (multilineage and lymphoid)
 - Four _BCR::ABL1_ gene expression subcluster enriched for genomic aberrations (delHBS1L, del7, IKZF1, CDKN2A/PAX5)
 - Hyperdiploidy in _BCR::ABL1_
-- Associations to B lymphopoiesis stages based on gene set enrichment analyses 
+- Associations to B and T lymphopoiesis stages based on gene set enrichment analyses 
 - Blast Count percentage
-- Immunophenotype
+- Immunophenotype in B-ALL
 - Patient's sex
 
 # ALLCatchR
