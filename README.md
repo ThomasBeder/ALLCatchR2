@@ -1,6 +1,6 @@
 # ALLCatchR2
 This is a test version for ALLCatcR2 and we are happy for any inssues or unexprected behavior that is reported as a feedback to us.
-_This is an update of the gene expression based BCP-ALL subtype classifier **ALLCatchR** (https://github.com/ThomasBeder/ALLCatchR) including subtype predictions for T-ALL. T-ALL subtypes were identified based on an analysis of 2049 samples from 13 cohorts.
+The tool is an update of the gene expression based BCP-ALL subtype classifier **ALLCatchR** (https://github.com/ThomasBeder/ALLCatchR) including subtype predictions for T-ALL. T-ALL subtypes were identified based on an analysis of 2049 samples from 13 cohorts.
 
 # links to References
 - _BCR::ABL1_ subcluster https://ashpublications.org/blood/article/143/14/1391/506890/Developmental-trajectories-and-cooperating-genomic
