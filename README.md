@@ -50,7 +50,7 @@ As input ALLCatchR2 requires a single text file in which the first column repres
 ```
 library(ALLCatchR2)
 out <- allcatchr_1.1(Lineage = "B-ALL", Counts.file = NA, ID_class = "symbol", sep = "\t", out.file = "predictions.tsv")
-# out: A list including T-ALL subtype predicitons, ssGSEA results to healthy T cell developmental stages and expression of
+# out: For "B-ALL" a predicion table is written. For "T-ALL" aditionally, a list including T-ALL subtype predicitons, ssGSEA results to healthy T cell developmental stages and expression of
 T-ALL marker and driver genes with expression statistic in T-ALL.
 # Lineage: disease Lineage c("B-ALL","T-ALL")
 # Counts.file: /path/to/your/count/data, if left empty a test
@@ -66,7 +66,8 @@ ALLCatchR2 writes a ```out.file``` file to your current working directory (or th
 - 25-30 Predicitons: high-confidence and candidate level predictions for main-, sub-cluser and immature T-ALL / ETP-like
 - Prediction: Predicted subtype
 - BC_pred: Blast count predictions score
-- 32-57: ssGSEA to T-cell developmental stages 
+- 32-57: ssGSEA to T-cell developmental stages
+- Aditionally, expression of T-ALL marker and driver genes with expression statistic in T-ALL.
 ## output B-ALL
 ALLCatchR2 writes a ```out.file``` file to your current working directory (or the path defined by ```out.file``` parameter) with the following columns:
 - sample: Sample ID
