@@ -67,7 +67,8 @@ As input ALLCatchR2 requires a single text file in which the first column repres
 ```
 library(ALLCatchR2)
 out <- allcatchr_1.1(Lineage = "B-ALL", Counts.file = NA, ID_class = "symbol", sep = "\t", out.file = "predictions.tsv")
-# out a list including T-ALL subtype predicitons, ssGSEA results to healthy T cell developmental stages and expression of T-ALL marker and driver genes with expression statistic in T-ALL 
+# out: A list including T-ALL subtype predicitons, ssGSEA results to healthy T cell developmental stages and expression of
+T-ALL marker and driver genes with expression statistic in T-ALL.
 # Lineage: disease Lineage c("B-ALL","T-ALL")
 # Counts.file: /path/to/your/count/data, if left empty a test
 # ID_class: gene names can be either "symbol", "ensemble_ID" or	"entrez_ID"
