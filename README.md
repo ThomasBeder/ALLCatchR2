@@ -2,8 +2,6 @@
 This is a test version for ALLCatchR2. The tool is an update of the gene expression based BCP-ALL subtype classifier **ALLCatchR** (https://github.com/ThomasBeder/ALLCatchR) including subtype predictions for T-ALL. T-ALL subtypes were identified based on an analysis of 2049 samples from 13 cohorts.
 
 # links to References
-- ALLCatchR - https://journals.lww.com/hemasphere/fulltext/2023/09000/the_gene_expression_classifier_allcatchr.7.aspx
-- _BCR::ABL1_ subcluster https://ashpublications.org/blood/article/143/14/1391/506890/Developmental-trajectories-and-cooperating-genomic
 - T-ALL subtype classification https://library.ehaweb.org/eha/2025/eha2025-congress/4159185/thomas.beder.a.gene.expression.based.machine.learning.classifier.robustly.html?f=listing%3D4%2Abrowseby%3D8%2Asortby%3D2%2Amedia%3D3%2Aspeaker%3D1045302 
 
 _ALLCatchR2_ was developed to predict:
@@ -24,7 +22,9 @@ _ALLCatchR2_ was developed to predict:
 
 
 ## Publications
-- Beder T, Hansen BT, Hartmann AM, et al. A The Gene Expression Classifier ALLCatchR Identifies B-cell Precursor ALL Subtypes and Underlying Developmental Trajectories Across Age _HemaSphere_.  7(9):p e939, September 2023. (https://doi.org/10.1097/HS9.0000000000000939)
+- Beder T, Wolgast N, Walter W et al. A gene expression based machine learnning classifier robustly identifies 20 T-ALL subtypes across cohorts and age groups (https://library.ehaweb.org/eha/2025/eha2025-congress/4159185/thomas.beder.a.gene.expression.based.machine.learning.classifier.robustly.html?f=listing%3D4%2Abrowseby%3D8%2Asortby%3D2%2Amedia%3D3%2Aspeaker%3D1045302).
+- Bastian L, Beder T, Barz M, et al. Developmental trajectories and cooperating genomic events define molecular subtypes of _BCR::ABL1_-positive ALL  _Blood_ (2024) 143 (14): 1391–1398. (https://doi.org/10.1097/HS9.0000000000000939)
+- Beder T, Hansen BT, Hartmann AM, et al. A The Gene Expression Classifier ALLCatchR Identifies B-cell Precursor ALL Subtypes and Underlying Developmental Trajectories Across Age _HemaSphere_.  7(9):p e939, September 2023. (https://doi.org/10.1182/blood.2023021752)
 - Beder T, Hansen BT, Hartmann AM, et al. A Multi-Cohort Gene Expression Classifier (ALLCatchR) Identifies B-Precursor ALL Subtypes and Their Developmental Trajectories across Age Groups. _Blood_. 2022;140(Supplement 1):1053–1055. (https://doi.org/10.1182/blood-2022-163311)
 
 ## Installation
