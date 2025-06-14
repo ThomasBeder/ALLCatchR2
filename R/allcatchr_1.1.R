@@ -857,11 +857,11 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     
     TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos1] <- gsub("C1.1 (TAL1 αβ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos1])
     TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos1] <- gsub("C1.2 (LMO2 γδ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos1])
-   
+               
     } else {
       TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- gsub("C1.1 (TAL1 αβ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
       TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- gsub("C1.2 (LMO2 γδ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
-      
+         
     }
     
     pos2 <- grep("C12 (immature, MED12, HOXA13)", TALL_subtype_peds$`T-ALL main-cluster high-confidence`, fixed = T)
@@ -881,9 +881,17 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     if (length(pos1) > 0) {  
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1] <- gsub("C1.1 (TAL1 αβ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1])
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1] <- gsub("C1.2 (LMO2 γδ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1])
+      # this is new from here
+     TALL_subtype_peds$`C1.1 (TAL1 αβ-like)`[-pos1] <- NA
+     TALL_subtype_peds$`C1.2 (LMO2 γδ-like)`[-pos1] <- NA
+    
     } else {
       TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C1.1 (TAL1 αβ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
       TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C1.2 (LMO2 γδ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
+
+     # this is new from here
+     TALL_subtype_peds$`C1.1 (TAL1 αβ-like)` <- NA
+     TALL_subtype_peds$`C1.2 (LMO2 γδ-like)` <- NA
       
     }
     
