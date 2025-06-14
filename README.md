@@ -25,7 +25,6 @@ _ALLCatchR2_ was developed to predict:
 - Beder T, Wolgast N, Walter W et al. A gene expression based machine learnning classifier robustly identifies 20 T-ALL subtypes across cohorts and age groups (https://library.ehaweb.org/eha/2025/eha2025-congress/4159185/thomas.beder.a.gene.expression.based.machine.learning.classifier.robustly.html?f=listing%3D4%2Abrowseby%3D8%2Asortby%3D2%2Amedia%3D3%2Aspeaker%3D1045302).
 - Bastian L, Beder T, Barz M, et al. Developmental trajectories and cooperating genomic events define molecular subtypes of _BCR::ABL1_-positive ALL  _Blood_ (2024) 143 (14): 1391–1398. (https://doi.org/10.1097/HS9.0000000000000939)
 - Beder T, Hansen BT, Hartmann AM, et al. A The Gene Expression Classifier ALLCatchR Identifies B-cell Precursor ALL Subtypes and Underlying Developmental Trajectories Across Age _HemaSphere_.  7(9):p e939, September 2023. (https://doi.org/10.1182/blood.2023021752)
-- Beder T, Hansen BT, Hartmann AM, et al. A Multi-Cohort Gene Expression Classifier (ALLCatchR) Identifies B-Precursor ALL Subtypes and Their Developmental Trajectories across Age Groups. _Blood_. 2022;140(Supplement 1):1053–1055. (https://doi.org/10.1182/blood-2022-163311)
 
 ## Installation
 open RStudio
@@ -34,31 +33,58 @@ install devtools and follow the installion guide https://github.com/r-lib/devtoo
 if (!require("devtools", quietly = TRUE))
   install.packages("devtools")
 ```
-install ALLCatchRbcrabl1 
+install ALLCatchR2
 ```
-devtools::install_github("ThomasBeder/ALLCatchR_bcrabl1")
+devtools::install_github("ThomasBeder/ALLCatchR2")
 ```
 
 ## Quickstart
 If Counts.file is left ```NA``` ten test samples are predicted
 ```
-library(ALLCatchRbcrabl1)
-out <- allcatch_bcrabl1()
+library(ALLCatchR2)
+out <- allcatchr_1.1()
 ```
 
-## Run ALLCatchRbcrabl1
-As input ALLCatchRbcrabl1 requires a single text file in which the first column represent the genes and the other columns the count data for each sample
+Usage
+
+Arguments
+
+
+Counts.file	
+count data
+
+ID_class	
+gene ids used; c("symbol","ensemble_ID","entrez_ID")
+
+sep	
+file seperator
+
+out.file	
+output file path
+
+## Run ALLCatchR2
+As input ALLCatchR2 requires a single text file in which the first column represent the genes and the other columns the count data for each sample
 ```
-library(ALLCatchRbcrabl1)
-out <- allcatch_bcrabl1(Counts.file = NA, ID_class = "symbol", sep = "\t", out.file = "predictions.tsv")
+library(ALLCatchR2)
+out <- allcatchr_1.1(Lineage = "B-ALL", Counts.file = NA, ID_class = "symbol", sep = "\t", out.file = "predictions.tsv")
+# out a list including T-ALL subtype predicitons, ssGSEA results to healthy T cell developmental stages and expression of T-ALL marker and driver genes with expression statistic in T-ALL 
+# Lineage: disease Lineage c("B-ALL","T-ALL")
 # Counts.file: /path/to/your/count/data, if left empty a test
 # ID_class: gene names can be either "symbol", "ensemble_ID" or	"entrez_ID"
 # sep: seperator of the text file usually "\t", "," or ";"
 # out.file: name of the output file
 ```
 
-## output
-ALLCatchR writes a ```out.file``` file to your current working directory (or the path defined by ```out.file``` parameter) with the following columns:
+## output T-ALL
+ALLCatchR2 writes a ```out.file``` file to your current working directory (or the path defined by ```out.file``` parameter) with the following columns:
+- sample: Sample ID
+- 2-24 Scores: T-ALL subtype main- and sub-cluster predicitons scores
+- 25-30 Predicitons: high-confidence and candidate level predictions for main-, sub-cluser and immature T-ALL / ETP-like
+- Prediction: Predicted subtype
+- BC_pred: Blast count predictions score
+- 32-57: ssGSEA to T-cell developmental stages 
+## output B-ALL
+ALLCatchR2 writes a ```out.file``` file to your current working directory (or the path defined by ```out.file``` parameter) with the following columns:
 - sample: Sample ID
 - Score: BCP-ALL subtype prediction score
 - Prediction: Predicted subtype
