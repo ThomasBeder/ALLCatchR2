@@ -45,23 +45,6 @@ library(ALLCatchR2)
 out <- allcatchr_1.1()
 ```
 
-Usage
-
-Arguments
-
-
-Counts.file	
-count data
-
-ID_class	
-gene ids used; c("symbol","ensemble_ID","entrez_ID")
-
-sep	
-file seperator
-
-out.file	
-output file path
-
 ## Run ALLCatchR2
 As input ALLCatchR2 requires a single text file in which the first column represent the genes and the other columns the count data for each sample
 ```
