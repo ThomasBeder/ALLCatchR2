@@ -881,7 +881,8 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     if (length(pos1) > 0) {  
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1] <- gsub("C1.1 (TAL1 αβ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1])
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1] <- gsub("C1.2 (LMO2 γδ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1])
-      # this is new from here
+    
+     # this is new from here
      TALL_subtype_peds$`C1.1 (TAL1 αβ-like)`[-pos1] <- NA
      TALL_subtype_peds$`C1.2 (LMO2 γδ-like)`[-pos1] <- NA
     
@@ -901,11 +902,21 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.1 (MED12)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.2 (HOXA13)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.3 (immature other)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
+  
+    # this is new from here
+     TALL_subtype_peds$`C12.1 (MED12)`[-pos2] <- NA
+     TALL_subtype_peds$`C12.2 (HOXA13)`[-pos2] <- NA
+     TALL_subtype_peds$`C12.3 (immature other)`[-pos2] <- NA
+      
     } else {
       TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.1 (MED12)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
       TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.2 (HOXA13)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
       TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.3 (immature other)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
-      
+    
+     # this is new from here
+     TALL_subtype_peds$`C12.1 (MED12)` <- NA
+     TALL_subtype_peds$`C12.2 (HOXA13)` <- NA
+     TALL_subtype_peds$`C12.3 (immature other)` <- NA
       
       
     }
