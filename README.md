@@ -15,7 +15,7 @@ _ALLCatchR2_ was developed to predict:
 - Immunophenotype in B-ALL
 - Patient's sex
 
-# ALLCatchR
+# ALLCatchR2
 ![image](Github_abstract.png)
 # _BCR::ABL1_ gene expression subclusters
 <img src="https://github.com/ThomasBeder/ALLCatchR_bcrabl1/blob/main/ALLCatchRbcrabl1.png" width=100% height=100%>
