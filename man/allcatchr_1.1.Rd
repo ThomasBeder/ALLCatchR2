@@ -2,7 +2,7 @@
 % Please edit documentation in R/ALLCatchR.R
 \name{allcatchr_1.1}
 \alias{allcatchr_1.1}
-\title{Classifiction}
+\title{Classification}
 \usage{
 allcatchr_1.1(Lineage = "B-ALL", Counts.file = NA, ID_class = "symbol", sep = "\\t", out.file = "/path")
 }
