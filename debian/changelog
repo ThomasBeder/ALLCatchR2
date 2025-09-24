@@ -1,0 +1,7 @@
+r-cran-allcatchr2 (1.1-1) unstable; urgency=medium
+
+  * Initial Debian package release
+  * Fixed T-ALL lineage data embedding issue (Closes: #1)
+  * Includes all data files (T-ALL and B-ALL models)
+
+ -- Thomas Beder <thomas.beder@uksh.de>  Tue, 24 Sep 2024 14:00:00 +0200

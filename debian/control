@@ -1,0 +1,36 @@
+Source: r-cran-allcatchr2
+Section: gnu-r
+Priority: optional
+Maintainer: Thomas Beder <thomas.beder@uksh.de>
+Build-Depends: debhelper-compat (= 13),
+               dh-r,
+               r-base-dev
+Standards-Version: 4.6.2
+Homepage: https://github.com/ThomasBeder/ALLCatchR2
+Vcs-Browser: https://github.com/ThomasBeder/ALLCatchR2
+Vcs-Git: https://github.com/ThomasBeder/ALLCatchR2.git
+Rules-Requires-Root: no
+
+Package: r-cran-allcatchr2
+Architecture: all
+Depends: ${R:Depends},
+         ${misc:Depends},
+         r-base-core
+Recommends: ${R:Recommends},
+            r-cran-rlang,
+            r-cran-caret,
+            r-cran-randomforest,
+            r-cran-ranger,
+            r-cran-glmnet
+Suggests: ${R:Suggests}
+Description: B-Cell and T-Cell ALL molecular subtype classifier
+ ALLCatchR2 is a machine learning-based classifier for predicting molecular
+ subtypes in B-cell and T-cell acute lymphoblastic leukemia (ALL) using 
+ RNA-Seq count data.
+ .
+ For B-ALL, it predicts 21 molecular subtypes including BCL2/MYC, CDX2/UBTF,
+ CEBP, DUX4, ETV6::RUNX1, and others, along with BCR::ABL1 gene expression
+ clusters and clinical features.
+ .
+ For T-ALL, it identifies 20 gene expression subtypes and defines immature
+ T-ALL / ETP-like cases based on analysis of 2049 samples from 13 cohorts.

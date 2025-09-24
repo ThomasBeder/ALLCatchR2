@@ -9,21 +9,21 @@ URL: https://github.com/ThomasBeder/ALLCatchR2
 BugReports: https://github.com/ThomasBeder/ALLCatchR2/issues
 Depends:
     R (>= 4.0.0),
-    rlang (>= 1.0.6)
+    rlang (>= 1.0.0)
 biocViews:
 Imports:
     utils,
     stats,
-    singscore,
     caret,
     LiblineaR,
     kknn,
     randomForest,
-    ranger,
-    glmnet,
     caTools,
     elasticnet
 Suggests:
+    singscore,
+    ranger,
+    glmnet,
     knitr,
     rmarkdown
 License: `use_mit_license()`

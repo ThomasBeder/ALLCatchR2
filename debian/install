@@ -1,0 +1,3 @@
+data/*.rda usr/lib/R/site-library/ALLCatchR2/data/
+R/*.R usr/lib/R/site-library/ALLCatchR2/R/
+R/sysdata.rda usr/lib/R/site-library/ALLCatchR2/R/
