@@ -20,7 +20,7 @@ Dieses Debian-Paket behebt das Problem aus [Issue #1](https://github.com/ThomasB
    - Alle B-ALL Modelle
    - Test-Daten
 
-3. **Build-Skript** (`build-package.sh`) automatisiert den Prozess
+3. **Build-Skripte** (`build-no-sudo.sh` und `build-debian-package.sh`) automatisieren den Prozess
 
 ## Paket bauen
 
@@ -40,19 +40,25 @@ Das Paket benötigt folgende R-Pakete:
 
 ### Build-Prozess
 
-#### Option 1: Automatisches Build-Skript (empfohlen)
+#### Option 1: Schnelles Build-Skript (empfohlen)
 
 ```bash
 cd ALLCatchR2
-./build-package.sh
+./build-no-sudo.sh
 ```
 
-Das Skript wird:
-1. Build-Abhängigkeiten installieren
-2. Fehlende R-Pakete installieren
-3. Das Debian-Paket bauen
+Das Skript ist schneller und benötigt kein sudo. Es prüft vorhandene R-Pakete und baut das Debian-Paket.
 
-#### Option 2: Manueller Build
+#### Option 2: Vollständiges Build-Skript
+
+```bash
+cd ALLCatchR2
+./build-debian-package.sh
+```
+
+Das Skript installiert alle Dependencies, kann aber bei fehlenden Paketen länger dauern.
+
+#### Option 3: Manueller Build
 
 ```bash
 # Abhängigkeiten installieren
