@@ -934,45 +934,59 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     cat("assign putative progenitor...", getwd(),"\n")
     dim(Counts)
     rownames(Counts)
-    cds_lengthNum <-  cds_length$cds_length[match(rownames(Counts), cds_length$gene)]
-    # calculate mean cds length for missing values
-    cds_lengthNum[is.na(cds_lengthNum)] <- mean(cds_lengthNum[!is.na(cds_lengthNum)], na.rm = T)
-    # calculate tpmps itself # https://support.bioconductor.org/p/91218/
     
-    tpm3 <- function(counts,len) {
-      x <- counts/len
-      return(t(t(x)*1e6/colSums(x)))
+    # Check if we have any genes that match with the gene list
+    ma <- match(genesMini,rownames(Counts))
+    ma <- ma[!is.na(ma)]                                        
+    Counts <- Counts[ma,,drop = F]
+    
+    if(nrow(Counts) == 0) {
+      # If no genes found, create empty TotalScore_scaled with proper structure
+      cat("No genes found for T-cell progenitor analysis, creating empty scores...\n")
+      TotalScore_scaled <- data.frame(matrix(0, nrow = nrow(TALL_subtype_peds), ncol = 7))
+      colnames(TotalScore_scaled) <- c("HSC", "T.CD4.naive", "T.CD4.memory", "T.CD8.naive", "T.CD8.memory", "B.naive", "NK")
+      rownames(TotalScore_scaled) <- rownames(TALL_subtype_peds)
+    } else {
+      cds_lengthNum <-  cds_length$cds_length[match(rownames(Counts), cds_length$gene)]
+      # calculate mean cds length for missing values
+      cds_lengthNum[is.na(cds_lengthNum)] <- mean(cds_lengthNum[!is.na(cds_lengthNum)], na.rm = T)
+      # calculate tpmps itself # https://support.bioconductor.org/p/91218/
+      
+      tpm3 <- function(counts,len) {
+        x <- counts/len
+        return(t(t(x)*1e6/colSums(x)))
+      }
+      tpms <- tpm3(Counts[,1:ncol(Counts),drop = F],cds_lengthNum)
+      tpms <- as.data.frame(tpms)
+      
+      # rank data
+      rankData <- singscore::rankGenes(tpms)
+      
+      # load gene sets used for ssGSEA and transform them to a list
+     
+      Genes_up <- Tcell_dev_up
+      Genes_dn <- Tcell_dev_dn
+      scoredf <- suppressWarnings({singscore::simpleScore(rankData, upSet = Genes_up[[1]], downSet = Genes_dn[[1]])})
+      utils::head(scoredf)
+      TotalScore <- scoredf[,1, drop = FALSE]
+      
+      for (i in 1:length(Genes_up)) {
+        scoredf <- suppressWarnings({singscore::simpleScore(rankData, upSet = Genes_up[[i]], downSet = Genes_dn[[i]])})
+        TotalScore[,i] <- scoredf[,1]
+      }
+      
+      # assign pathways names to data
+      colnames(TotalScore) <- names(Genes_up)
+      utils::head(TotalScore)
+      
+      # scale total enrichment scores
+      TotalScore_scaled <- as.data.frame(t(apply(TotalScore, 1, scale)))
+      #for (i in 1:nrow(TotalScore_scaled)) {
+      #  TotalScore_scaled[i,] <- range01(TotalScore_scaled[i,])
+      #}
+      colnames(TotalScore_scaled) <- colnames(TotalScore)
+      utils::head(TotalScore_scaled)
     }
-    tpms <- tpm3(Counts[,1:ncol(Counts),drop = F],cds_lengthNum)
-    tpms <- as.data.frame(tpms)
-    
-    # rank data
-    rankData <- singscore::rankGenes(tpms)
-    
-    # load gene sets used for ssGSEA and transform them to a list
-   
-    Genes_up <- Tcell_dev_up
-    Genes_dn <- Tcell_dev_dn
-    scoredf <- suppressWarnings({singscore::simpleScore(rankData, upSet = Genes_up[[1]], downSet = Genes_dn[[1]])})
-    utils::head(scoredf)
-    TotalScore <- scoredf[,1, drop = FALSE]
-    
-    for (i in 1:length(Genes_up)) {
-      scoredf <- suppressWarnings({singscore::simpleScore(rankData, upSet = Genes_up[[i]], downSet = Genes_dn[[i]])})
-      TotalScore[,i] <- scoredf[,1]
-    }
-    
-    # assign pathways names to data
-    colnames(TotalScore) <- names(Genes_up)
-    utils::head(TotalScore)
-    
-    # scale total enrichment scores
-    TotalScore_scaled <- as.data.frame(t(apply(TotalScore, 1, scale)))
-    #for (i in 1:nrow(TotalScore_scaled)) {
-    #  TotalScore_scaled[i,] <- range01(TotalScore_scaled[i,])
-    #}
-    colnames(TotalScore_scaled) <- colnames(TotalScore)
-    utils::head(TotalScore_scaled)
 
     ################################################################################
     ###### T-ALL blast count prediction ############################################
