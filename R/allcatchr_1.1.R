@@ -921,7 +921,9 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub(";;",";", TALL_subtype_peds$`T-ALL sub-cluster candidate`)
     TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- as.character(sapply(TALL_subtype_peds$`T-ALL sub-cluster high-confidence`, function(x) paste0(strsplit(x, ";")[[1]], collapse = ";")) )
     TALL_subtype_peds$`T-ALL sub-cluster candidate` <- as.character(sapply(TALL_subtype_peds$`T-ALL sub-cluster candidate`, function(x) paste0(strsplit(x, ";")[[1]], collapse = ";")) )
-    
+    TALL_subtype_peds$`T-ALL sub-cluster candidate` <- sub("^;", "", TALL_subtype_peds$`T-ALL sub-cluster candidate`)
+    TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- sub("^;", "", TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
+                                                                           
     head(TALL_subtype_peds)
     output <- cbind(sample = rownames(TALL_subtype_peds), TALL_subtype_peds)
     
