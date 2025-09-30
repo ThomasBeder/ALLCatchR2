@@ -976,16 +976,31 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
       
       # assign pathways names to data
       colnames(TotalScore) <- names(Genes_up)
-      utils::head(TotalScore)
-      
+            
       # scale total enrichment scores
       TotalScore_scaled <- as.data.frame(t(apply(TotalScore, 1, scale)))
       #for (i in 1:nrow(TotalScore_scaled)) {
       #  TotalScore_scaled[i,] <- range01(TotalScore_scaled[i,])
       #}
       colnames(TotalScore_scaled) <- colnames(TotalScore)
-      utils::head(TotalScore_scaled)
-    }
+      ssGSEA_Tdev <- TotalScore_scaled
+
+    ################################################################################
+    ###### progenitor-like leukemia ssGSEA #########################################
+    ################################################################################
+    # progenitor-like subpopulation gene sets
+     
+      scoredf <- suppressWarnings({singscore::simpleScore(rankData, upSet = Tprogenitor_population_genes$panHSPC$up, 
+                                                          downSet = Tprogenitor_population_genes$panHSPC$down)})
+      utils::head(scoredf)
+      TotalScore_panHSPC <- scoredf[,1, drop = FALSE]
+      scoredf <-  suppressWarnings({singscore::simpleScore(rankData, upSet = Tprogenitor_population_genes$BMPlike_119$up, 
+                                                          downSet = Tprogenitor_population_genes$BMPlike_119$down)})
+      TotalScore_BMPlike_119 <- scoredf[,1, drop = FALSE]
+      ssGSEA_progenitor_pop <- as.data.frame(cbind(TotalScore_panHSPC, TotalScore_BMPlike_119))
+      colnames(ssGSEA_progenitor_pop) <- c("panHSPC","BMPlike_119")
+          
+      }
 
     ################################################################################
     ###### T-ALL blast count prediction ############################################
@@ -1098,7 +1113,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     ###### finalize output table ###################################################
     ################################################################################
                                                                            
-    output <- as.data.frame(cbind(output, BC_pred = preds_TALL_BC$integrated, TotalScore_scaled))
+    output <- as.data.frame(cbind(output, BC_pred = preds_TALL_BC$integrated, ssGSEA_Tdev, ssGSEA_progenitor_pop))
     
     cat("predictions saved in:", getwd(),"\n")
     # save predictions
