@@ -155,10 +155,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
   colnames(resdf)[c(2,3)] <- c("lymphoid", "multilineage")
   colnames(resdf)[c(5,8,11,14)] <- c("delHBS1L",    "CDKN2A/PAX5", "IKZF1",       "del7")
   colnames(resdf)[c(17,18)] <- c("hyperdiploid", "no_hyperdiploid")
-  
-  hist(resdf$no_hyperdiploid)
-  hist(resdf$hyperdiploid)
-  
+     
   ma <- match(c("sample", "multilineage", "lymphoid", "delHBS1L", "del7",        
                 "IKZF1", "CDKN2A/PAX5", "no_hyperdiploid", "hyperdiploid"), colnames(resdf))
   resdf <- resdf[,ma]                                       
@@ -804,10 +801,10 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     # add C1.2 (LMO2 γδ-like) predictions scores
     TALL_subtype_peds <- as.data.frame(cbind(TALL_subtype_peds[,1:21], 
                                                                "C1.2 (LMO2 γδ-like)" = 1-TALL_subtype_peds$`C1.1 (TAL1 αβ-like)`,
-                                             TALL_subtype_peds$`immature T-ALL / ETP-like`))
+                                             TALL_subtype_peds$`immature T-ALL (ETP-like)`))
     
     head(TALL_subtype_peds)
-    colnames(TALL_subtype_peds)[23] <- "immature T-ALL / ETP-like"
+    colnames(TALL_subtype_peds)[23] <- "immature T-ALL (ETP-like)"
     
     
     head(TALL_subtype_peds)
@@ -851,7 +848,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
       
     }
     
-    pos1 <- grep("C1 (TAL1 αβ-like/LMO2 γδ-like)", TALL_subtype_peds$`T-ALL main-cluster high-confidence`, fixed = T)
+    pos1 <- grep("C1 (TAL1 αβ-like,LMO2 γδ-like)", TALL_subtype_peds$`T-ALL main-cluster high-confidence`, fixed = T)
    
     if (length(pos1) > 0) {
     
@@ -864,20 +861,20 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
          
     }
     
-    pos2 <- grep("C12 (immature, MED12, HOXA13)", TALL_subtype_peds$`T-ALL main-cluster high-confidence`, fixed = T)
+    pos2 <- grep("C12 (MED12, HOXA13, ZFP36L2, CH-related)", TALL_subtype_peds$`T-ALL main-cluster high-confidence`, fixed = T)
     
     if (length(pos2) > 0) {  
     
-    TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2] <- gsub("C12.1 (MED12)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2])
+    TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2] <- gsub("C12.1 (MED12, ZFP36L2)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2])
     TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2] <- gsub("C12.2 (HOXA13)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2])
-    TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2] <- gsub("C12.3 (immature other)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2])
+    TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2] <- gsub("C12.3 (CH-related)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2])
     } else {
-      TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- gsub("C12.1 (MED12)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
+      TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- gsub("C12.1 (MED12, ZFP36L2)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
       TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- gsub("C12.2 (HOXA13)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
-      TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- gsub("C12.3 (immature other)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
+      TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- gsub("C12.3 (CH-related)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
       }
     
-    pos1 <- grep("C1 (TAL1 αβ-like/LMO2 γδ-like)", TALL_subtype_peds$`T-ALL main-cluster candidate`, fixed = T)
+    pos1 <- grep("C1 (TAL1 αβ-like,LMO2 γδ-like)", TALL_subtype_peds$`T-ALL main-cluster candidate`, fixed = T)
     if (length(pos1) > 0) {  
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1] <- gsub("C1.1 (TAL1 αβ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1])
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1] <- gsub("C1.2 (LMO2 γδ-like)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos1])
@@ -896,10 +893,10 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
       
     }
     
-    pos2 <- grep("C12 (immature, MED12, HOXA13)", TALL_subtype_peds$`T-ALL main-cluster candidate`, fixed = T)
+    pos2 <- grep("C12 (MED12, HOXA13, ZFP36L2, CH-related)", TALL_subtype_peds$`T-ALL main-cluster candidate`, fixed = T)
     
     if (length(pos2) > 0) {    
-    TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.1 (MED12)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
+    TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.1 (MED12, ZFP36L2)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.2 (HOXA13)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.3 (immature other)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
   
@@ -909,14 +906,14 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
      TALL_subtype_peds$`C12.3 (immature other)`[-pos2] <- NA
       
     } else {
-      TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.1 (MED12)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
+      TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.1 (MED12, ZFP36L2)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
       TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.2 (HOXA13)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
-      TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.3 (immature other)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
+      TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.3 (CH-related)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
     
      ## set subcluster scores to NA in cases not predicted to be C12
-     TALL_subtype_peds$`C12.1 (MED12)` <- NA
+     TALL_subtype_peds$`C12.1 (MED12, ZFP36L2)` <- NA
      TALL_subtype_peds$`C12.2 (HOXA13)` <- NA
-     TALL_subtype_peds$`C12.3 (immature other)` <- NA
+     TALL_subtype_peds$`C12.3 (CH-related)` <- NA
       
       
     }
