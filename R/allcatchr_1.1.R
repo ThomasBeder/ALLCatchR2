@@ -898,12 +898,12 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     if (length(pos2) > 0) {    
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.1 (MED12, ZFP36L2)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.2 (HOXA13)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
-    TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.3 (immature other)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
+    TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.3 (CH-related)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
   
     ## set subcluster scores to NA in cases not predicted to be C12
-     TALL_subtype_peds$`C12.1 (MED12)`[-pos2] <- NA
+     TALL_subtype_peds$`C12.1 (MED12, ZFP36L2)`[-pos2] <- NA
      TALL_subtype_peds$`C12.2 (HOXA13)`[-pos2] <- NA
-     TALL_subtype_peds$`C12.3 (immature other)`[-pos2] <- NA
+     TALL_subtype_peds$`C12.3 (CH-related)`[-pos2] <- NA
       
     } else {
       TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.1 (MED12, ZFP36L2)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
