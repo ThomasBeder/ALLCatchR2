@@ -23,75 +23,75 @@ allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out
   loadNamespace("glmnet")
   loadNamespace("elasticnet")  
   
-    
+  
   ##############################################################################################
   # inculde T-ALL subtype classifier and ssGSEA to healhty T cell development ##################
   ##############################################################################################
-   #loadNamespace("caret")
-    # 1. preprocessing ############################################################
-    # load count data, where the first column should be gene identifiers
-   if(is.null(Counts.file)){
+  #loadNamespace("caret")
+  # 1. preprocessing ############################################################
+  # load count data, where the first column should be gene identifiers
+  if(is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
-   } else if (is.data.frame(Counts.file)) {
+  } else if (is.data.frame(Counts.file)) {
     Counts <- Counts.file
     cat("counts loaded...\n")
-    }else{
+  }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
     cat("counts loaded...\n")
   }
-    
-    if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
-      stop("Error: symbol, ensemble or entrez are not provided in the first column")
-    }
-    ID_conv <- ID_conversion_Lineage
-    # select the genes used for classifier trainig
-    ma <- match(ID_conv[,match(ID_class, colnames(ID_conv))], rownames(Counts))
-    Counts <- Counts[ma[!is.na(ma)],,drop = F]
-    
-    # convert to symbol (classifier was trained on symbols)
-    ma <- match(rownames(Counts), ID_conv[,match(ID_class, colnames(ID_conv))])
-    Counts <- Counts[!is.na(ma),,drop = F]
-    ma <- match(rownames(Counts), ID_conv[,match(ID_class, colnames(ID_conv))])
-    rownames(Counts) <- ID_conv$symbol[ma]
-    
-    # normalize data and scale between 0 and 1
-    Counts.norm <- Counts+1
-    Counts.norm <- apply(Counts.norm, 2, log10)
-    Counts.norm <- apply(Counts.norm, 2, scale)
   
-    # transpose data
-    Counts.norm <- as.data.frame(t(Counts.norm))
-    colnames(Counts.norm) <- rownames(Counts)
-    colnames(Counts.norm) <- colnames(Counts.norm)
-    
-    # find genes not provided by user
-    ma <- match(ID_conv$symbol, rownames(Counts))
-    GenesNoFound <- ID_conv$symbol[is.na(ma)]
-    
-    # Print number of missing genes
-    cat(paste0(length(GenesNoFound)), " of ", nrow(ID_conv), " genes not found\n")
-    if ((length(GenesNoFound)) > 0) {
-      cat("impute missing genes...\n")
-    }
-    
-    # impute missing genes
-    GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)], nrow = nrow(Counts.norm), ncol = length(GenesNoFound))
-    colnames(GenesNoFound_df) <- GenesNoFound
-    Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
-    
-    ################### predict all samples ########################################
-      
-    Lineage_preds <- list()
-    
-   for (y in 1:length(models_L_Lineage)) {
+  if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
+    stop("Error: symbol, ensemble or entrez are not provided in the first column")
+  }
+  ID_conv <- ID_conversion_Lineage
+  # select the genes used for classifier trainig
+  ma <- match(ID_conv[,match(ID_class, colnames(ID_conv))], rownames(Counts))
+  Counts <- Counts[ma[!is.na(ma)],,drop = F]
+  
+  # convert to symbol (classifier was trained on symbols)
+  ma <- match(rownames(Counts), ID_conv[,match(ID_class, colnames(ID_conv))])
+  Counts <- Counts[!is.na(ma),,drop = F]
+  ma <- match(rownames(Counts), ID_conv[,match(ID_class, colnames(ID_conv))])
+  rownames(Counts) <- ID_conv$symbol[ma]
+  
+  # normalize data and scale between 0 and 1
+  Counts.norm <- Counts+1
+  Counts.norm <- apply(Counts.norm, 2, log2)
+  Counts.norm <- apply(Counts.norm, 2, scale)
+  
+  # transpose data
+  Counts.norm <- as.data.frame(t(Counts.norm))
+  colnames(Counts.norm) <- rownames(Counts)
+  colnames(Counts.norm) <- colnames(Counts.norm)
+  
+  # find genes not provided by user
+  ma <- match(ID_conv$symbol, rownames(Counts))
+  GenesNoFound <- ID_conv$symbol[is.na(ma)]
+  
+  # Print number of missing genes
+  cat(paste0(length(GenesNoFound)), " of ", nrow(ID_conv), " genes not found\n")
+  if ((length(GenesNoFound)) > 0) {
+    cat("impute missing genes...\n")
+  }
+  
+  # impute missing genes
+  GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)], nrow = nrow(Counts.norm), ncol = length(GenesNoFound))
+  colnames(GenesNoFound_df) <- GenesNoFound
+  Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
+  
+  ################### predict all samples ########################################
+  
+  Lineage_preds <- list()
+  
+  for (y in 1:length(models_L_Lineage)) {
     model <- models_L_Lineage[[y]]
     
     modelType <- c("determenistic", "determenistic", "probalistic", 
                    "probalistic",  "probalistic"#, "probalistic"
     )
     pred_ind_model <- list()
-       
+    
     for (x in 1:length(model)) {
       model_type <- modelType[x]
       if (model_type == "determenistic") {
@@ -170,32 +170,32 @@ allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out
                                    pred = colnames(integrated_model)[apply(integrated_model, 1, which.max)]
     )
     
-     Lineage_preds[[y]] <- integrated_model
-    }  
-    # combine predictions from the individual T-ALL subtype models
-    Lineage_preds <- data.frame(sample = rownames(Counts.norm),
-                               "B-ALL" = mean(Lineage_preds[[1]][,2],
-                                              Lineage_preds[[2]][,2]),
-                               "T-ALL" = mean(Lineage_preds[[1]][,3],
-                                              Lineage_preds[[2]][,3])
-                               )
-    Lineage_preds$prediction <- "Unclassified"
-    Lineage_preds$prediction[which(Lineage_preds$`B-ALL` > 0.7)] <- "B-ALL"
-    Lineage_preds$prediction[which(Lineage_preds$`T-ALL` > 0.7)] <- "T-ALL"
+    Lineage_preds[[y]] <- integrated_model
+  }  
+  # combine predictions from the individual T-ALL subtype models
+  Lineage_preds <- data.frame(sample = rownames(Counts.norm),
+                              "B-ALL" = (Lineage_preds[[1]][,2] +
+                                             Lineage_preds[[2]][,2])/2,
+                              "T-ALL" = (Lineage_preds[[1]][,3] +
+                                           Lineage_preds[[2]][,3])/2,
+                              check.names = F
+  )
+  Lineage_preds$prediction <- "Unclassified"
+  Lineage_preds$prediction[which(Lineage_preds$`B-ALL` > 0.7)] <- "B-ALL"
+  Lineage_preds$prediction[which(Lineage_preds$`T-ALL` > 0.7)] <- "T-ALL"
   
-    rownames(Lineage_preds) <- rownames(Counts.norm)
-                                                                           
-    ################################################################################
-    ###### finalize output table ###################################################
-    ################################################################################
-                                                                           
-    output <- as.data.frame(cbind(output))
-    
-    cat("predictions saved in:", getwd(),"\n")
-    # save predictions
-    cat("Writing output file:",paste0(out.file),"...\n")
-    utils::write.table(output,out.file, sep = sep, row.names = F)
-    return(output)
-
+  rownames(Lineage_preds) <- rownames(Counts.norm)
+  
+  ################################################################################
+  ###### finalize output table ###################################################
+  ################################################################################
+  
+  output <- as.data.frame(cbind(output))
+  
+  cat("predictions saved in:", getwd(),"\n")
+  # save predictions
+  cat("Writing output file:",paste0(out.file),"...\n")
+  utils::write.table(output,out.file, sep = sep, row.names = F)
+  return(output)
+  
 }
-
