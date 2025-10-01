@@ -173,11 +173,17 @@ allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out
      Lineage_preds[[y]] <- integrated_model
     }  
     # combine predictions from the individual T-ALL subtype models
-    Lineage_preds <- as.data.frame(do.call("cbind", Lineage_preds))
+    Lineage_preds <- data.frame(sample = rownames(Counts.norm),
+                               "B-ALL" = mean(Lineage_preds[[1]][,2],
+                                              Lineage_preds[[2]][,2]),
+                               "T-ALL" = mean(Lineage_preds[[1]][,3],
+                                              Lineage_preds[[2]][,3])
+                               )
+    Lineage_preds$prediction <- "Unclassified"
+    Lineage_preds$prediction[which(Lineage_preds$`B-ALL` > 0.7)] <- "B-ALL"
+    Lineage_preds$prediction[which(Lineage_preds$`T-ALL` > 0.7)] <- "T-ALL"
+  
     rownames(Lineage_preds) <- rownames(Counts.norm)
-    colnames(Lineage_preds) <- names(models_L_Lineage)
-
-    output <- Lineage_preds
                                                                            
     ################################################################################
     ###### finalize output table ###################################################
