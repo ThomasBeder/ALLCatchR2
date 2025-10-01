@@ -2,3 +2,4 @@
 
 export(allcatchr_1.1)
 export(allcatchr_lineage)
+export(allcatchr_projectTALL)
