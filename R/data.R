@@ -87,3 +87,13 @@
 #' @usage data(models_TALL_BC)
 #'
 "models_TALL_BC"
+
+#' classification of B-ALL and T-ALL lineage
+#'
+#' model used for B-ALL and T-ALL subtype predictions including cross-validation
+#'
+#' @format list with different prediction models
+#' @usage data(models_L_Lineage)
+#'
+"models_L_Lineage"
+
