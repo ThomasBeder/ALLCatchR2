@@ -46,7 +46,7 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t",
   if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
     stop("Error: symbol, ensemble or entrez are not provided in the first column")
   }
-  ID_conv <- ID_conversion_sex
+  ID_conv <- ID_conversion_TALLumap
   # select the genes used for classifier trainig
   ma <- match(ID_conv[,match(ID_class, colnames(ID_conv))], rownames(Counts))
   Counts <- Counts[ma[!is.na(ma)],,drop = F]
