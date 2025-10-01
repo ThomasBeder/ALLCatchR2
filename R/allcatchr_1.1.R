@@ -15,7 +15,7 @@ globalVariables(c("test_data","models_20","NH","BC_model_GMALL","BC_model_MLL","
 #' allcatchr_1.1()
 #'
 
-allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", sep="\t", out.file=paste0(getwd(),"/predictions.tsv")) {
+allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol", sep="\t", out.file=paste0(getwd(),"/predictions.tsv")) {
   # Namespace from packages needed for prediction function using pre-trainted models
   loadNamespace("kknn")
   loadNamespace("ranger")
@@ -29,7 +29,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
   #loadNamespace("caret")
   # 1. preprocessing ############################################################
   # load count data, where the first column should be gene identifiers
-  if(is.na(Counts.file)){
+   if(!is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
@@ -365,7 +365,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
   ################################################################################  
   #### blast count prediction ####################################################  
   ################################################################################
- if(is.na(Counts.file)){
+ if(!is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
@@ -440,7 +440,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
   cat("Patient's sex prediction...\n")
   # 1. preprocessing ############################################################
   # load count data, where the first column should be gene identifiers
-  if(is.na(Counts.file)){
+   if(!is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
@@ -656,7 +656,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     #loadNamespace("caret")
     # 1. preprocessing ############################################################
     # load count data, where the first column should be gene identifiers
-   if(is.na(Counts.file)){
+   if(!is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
@@ -1035,15 +1035,15 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     ################################################################################
     ###### T-ALL blast count prediction ############################################
     ################################################################################
-    if(is.na(Counts.file)){
+    if(!is.null(Counts.file)){
     Counts <- test_data
-    #cat("test counts loaded...\n")
+    cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
     Counts <- Counts.file
-    #cat("counts loaded...\n")
+    cat("counts loaded...\n")
     }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
-    #cat("counts loaded...\n")
+    cat("counts loaded...\n")
   }
     
     if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
@@ -1108,15 +1108,15 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     ################################################################################
     ###### create T-ALL marker gene expression summary #############################
     ################################################################################
-   if(is.na(Counts.file)){
+    if(!is.null(Counts.file)){
     Counts <- test_data
-   # cat("test counts loaded...\n")
+    cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
     Counts <- Counts.file
-   # cat("counts loaded...\n")
+    cat("counts loaded...\n")
     }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
-   # cat("counts loaded...\n")
+    cat("counts loaded...\n")
   }
     
     if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
