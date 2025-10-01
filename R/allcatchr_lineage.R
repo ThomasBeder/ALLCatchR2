@@ -2,10 +2,9 @@ globalVariables(c("test_data","models_TALL_BC"))
 
 #' @title Classifiction
 #'
-#' @description Prediction of B-ALL leukemia subtypes based on expression data
+#' @description Prediction of B-ALL or T-ALL based on expression data
 #' @export
 #'
-#' @param Lineage B-ALL or T-ALL
 #' @param Counts.file count data
 #' @param ID_class gene ids
 #' @param sep file seperator
