@@ -25,7 +25,9 @@ Suggests:
     ranger,
     glmnet,
     knitr,
-    rmarkdown
+    rmarkdown,
+    umap,
+    ggplot2
 License: `use_mit_license()`
 VignetteBuilder: knitr
 RoxygenNote: 7.2.2
