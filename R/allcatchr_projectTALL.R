@@ -84,7 +84,7 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t",
   
   ################### predict all samples ########################################
   
-  umap_projection <- as.data.frame(predict(TALL_umap_model, Data.norm_adj[,lasso_genes_TALL]))
+  umap_projection <- as.data.frame(predict(TALL_umap_model, Counts.norm[,lasso_genes_TALL]))
   umap_projection <- data.frame("X1" = umap_projection$V1,
                               "X2" = umap_projection$V2,
                               "pred_final" = "query",
