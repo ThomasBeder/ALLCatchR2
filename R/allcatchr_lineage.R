@@ -14,7 +14,7 @@ globalVariables(c("test_data","models_L_Lineage"))
 #' allcatchr_lineage()
 #'
 
-allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out.file=paste0(getwd(),"/_lineage_predictions.tsv")) {
+allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out.file=paste0(getwd(),"/Lineage_predictions.tsv")) {
   # Namespace from packages needed for prediction function using pre-trainted models
   loadNamespace("kknn")
   loadNamespace("ranger")
