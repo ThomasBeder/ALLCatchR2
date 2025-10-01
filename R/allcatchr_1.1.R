@@ -988,7 +988,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     ################################################################################
     ###### progenitor-like leukemia ssGSEA #########################################
     ################################################################################
-    # progenitor-like subpopulation gene sets
+    # ssGSEA with progenitor-like subpopulation gene sets
      
       scoredf <- suppressWarnings({singscore::simpleScore(rankData, upSet = Tprogenitor_population_genes$panHSPC$up, 
                                                           downSet = Tprogenitor_population_genes$panHSPC$down)})
@@ -999,7 +999,24 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
       TotalScore_BMPlike_119 <- scoredf[,1, drop = FALSE]
       ssGSEA_progenitor_pop <- as.data.frame(cbind(TotalScore_panHSPC, TotalScore_BMPlike_119))
       colnames(ssGSEA_progenitor_pop) <- c("panHSPC","BMPlike_119")
-          
+
+    # assign percentile for the BMPlike_119 and panHSPC score
+    names(progenitor_ssGSEA)
+    ssGSEA_progenitor_pop$panHSPC_percentile <- NA
+    ssGSEA_progenitor_pop$BMPlike_119_percentile <- NA
+        
+    for (m in 1:ncol(rankData)) {
+        panHSPC_score <- ssGSEA_progenitor_pop$panHSPC[m]
+        nearest_value <- progenitor_ssGSEA[[1]]$value[which.min(abs(progenitor_ssGSEA[[1]]$value - panHSPC_score))]
+        ssGSEA_progenitor_pop$panHSPC_percentile[m] <- progenitor_ssGSEA[[1]]$quantile[which(progenitor_ssGSEA[[1]]$value == nearest_value)]
+        
+        BMPlike_119_score <- ssGSEA_progenitor_pop$BMPlike_119[m]
+        nearest_value <- progenitor_ssGSEA[[2]]$value[which.min(abs(progenitor_ssGSEA[[2]]$value - BMPlike_119_score))]
+        ssGSEA_progenitor_pop$BMPlike_119_percentile[m] <- progenitor_ssGSEA[[2]]$quantile[which(progenitor_ssGSEA[[2]]$value == nearest_value)]
+    }
+
+
+      
       }
 
     ################################################################################
