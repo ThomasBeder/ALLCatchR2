@@ -1,4 +1,4 @@
-globalVariables(c("test_data","models_TALL_BC"))
+globalVariables(c("test_data","models_L_Lineage"))
 
 #' @title Classifiction
 #'
@@ -14,7 +14,7 @@ globalVariables(c("test_data","models_TALL_BC"))
 #' allcatchr_lineage()
 #'
 
-allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out.file=paste0(getwd(),"/predictions.tsv")) {
+allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out.file=paste0(getwd(),"/_lineage_predictions.tsv")) {
   # Namespace from packages needed for prediction function using pre-trainted models
   loadNamespace("kknn")
   loadNamespace("ranger")
@@ -81,7 +81,104 @@ allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out
     Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
     
     ################### predict all samples ########################################
-    output <- "test"
+      
+    Lineage_preds <- list()
+    
+   for (y in 1:length(models_L_Lineage)) {
+    model <- models_L_Lineage[[y]]
+    
+    modelType <- c("determenistic", "determenistic", "probalistic", 
+                   "probalistic",  "probalistic"#, "probalistic"
+    )
+    pred_ind_model <- list()
+       
+    for (x in 1:length(model)) {
+      model_type <- modelType[x]
+      if (model_type == "determenistic") {
+        preds <- list()
+        for (j in 1:length(model[[x]])) {
+          preds[[j]] <- as.character(predict(model[[x]][[j]], newdata = Counts.norm,type = "raw"))
+        }
+        preds <- as.data.frame(do.call("cbind", preds))
+        head(preds)
+        
+        preds_prob <- data.frame(matrix(0, nrow = nrow( Counts.norm),
+                                        ncol = length(c(model$model_svmLinear[[1]]$levels[1],
+                                                        model$model_svmLinear[[1]]$levels[2]))
+        ))
+        colnames(preds_prob) <- c(model$model_svmLinear[[1]]$levels[1],
+                                  model$model_svmLinear[[1]]$levels[2])               
+        
+        for (i in 1:nrow(preds)) {
+          for (j in 1:ncol(preds_prob)) {
+            preds_prob[i,j] <- length(which(preds[i,] == make.names(colnames(preds_prob)[j])))/length(model[[1]])
+            
+          }
+        }
+        
+        
+        
+      }
+      
+      if (model_type == "probalistic") {
+        preds_prob <- list()
+        for (j in 1:length(model[[x]])) {
+          preds_prob[[j]] <- predict(model[[x]][[j]], newdata =Counts.norm,type = "prob")
+        }
+        tail(preds_prob[[j]])
+        
+        Means <- list()
+        
+        for (j in 1:ncol(preds_prob[[1]])) {
+          values <-list()
+          for (i in 1:length(preds_prob)) {
+            values[[i]] <- preds_prob[[i]][,j]
+          }
+          
+          Means[[j]] <-  apply(do.call("cbind", values), 1, mean)
+        }
+        
+        preds_prob <- as.data.frame(do.call("cbind", Means))
+        head(preds_prob)
+        tail(preds_prob)
+        colnames(preds_prob) <- sort(make.names(c(model$model_svmLinear[[1]]$levels[1],
+                                                  model$model_svmLinear[[1]]$levels[2])))
+      } 
+      pred_ind_model[[x]] <- preds_prob
+      
+    }
+    
+    Means <- list()
+    
+    for (j in 1:ncol(pred_ind_model[[1]])) {
+      values <-list()
+      for (i in 1:length(pred_ind_model)) {
+        values[[i]] <- pred_ind_model[[i]][,j]
+      }
+      
+      Means[[j]] <-  apply(do.call("cbind", values), 1, mean)
+    }
+    
+    
+    integrated_model <-  as.data.frame(do.call("cbind", Means))
+    
+    colnames(integrated_model) <- make.names(c(model$model_svmLinear[[1]]$levels[1],
+                                               model$model_svmLinear[[1]]$levels[2]))
+    integrated_model <- data.frame(sample = rownames(Counts.norm),
+                                   integrated_model = integrated_model,
+                                   max = apply(integrated_model, 1, max),
+                                   pred = colnames(integrated_model)[apply(integrated_model, 1, which.max)]
+    )
+    
+     Lineage_preds[[y]] <- integrated_model
+    }  
+    # combine predictions from the individual T-ALL subtype models
+    Lineage_preds <- as.data.frame(do.call("cbind", Lineage_preds))
+    rownames(Lineage_preds) <- rownames(Counts.norm)
+    colnames(Lineage_preds) <- names(models_L_Lineage)
+
+}
+  output <- Lineage_preds
                                                                            
     ################################################################################
     ###### finalize output table ###################################################
