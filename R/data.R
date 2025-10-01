@@ -97,3 +97,11 @@
 #'
 "models_L_Lineage"
 
+#' projection of T-ALL samples using umap
+#'
+#' projection of T-ALL samples using umap
+#'
+#' @format list with different prediction models
+#' @usage data(TALL_umap_model)
+#'
+"TALL_umap_model"
