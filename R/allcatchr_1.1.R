@@ -32,8 +32,11 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
   if(is.na(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
-  }else{
-    Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1, check.names = F)
+   } if is.data.frame(Counts.file) {
+    Counts <- Counts.file
+    cat("counts loaded...\n")
+    }else{
+    Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
     cat("counts loaded...\n")
   }
   
@@ -362,11 +365,15 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
   ################################################################################  
   #### blast count prediction ####################################################  
   ################################################################################
-  if(is.na(Counts.file)){
+ if(is.na(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
-  }else{
+   } if is.data.frame(Counts.file) {
+    Counts <- Counts.file
+    cat("counts loaded...\n")
+    }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
+    cat("counts loaded...\n")
   }
   
   if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
@@ -435,10 +442,13 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
   # load count data, where the first column should be gene identifiers
   if(is.na(Counts.file)){
     Counts <- test_data
-    #    cat("test counts loaded...\n")
-  }else{
+    cat("test counts loaded...\n")
+   } if is.data.frame(Counts.file) {
+    Counts <- Counts.file
+    cat("counts loaded...\n")
+    }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
-    #    cat("counts loaded...\n")
+    cat("counts loaded...\n")
   }
   
   if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
@@ -646,13 +656,16 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     #loadNamespace("caret")
     # 1. preprocessing ############################################################
     # load count data, where the first column should be gene identifiers
-    if(is.na(Counts.file)){
-      Counts <- test_data
-      cat("test counts loaded...\n")
+   if(is.na(Counts.file)){
+    Counts <- test_data
+    cat("test counts loaded...\n")
+   } if is.data.frame(Counts.file) {
+    Counts <- Counts.file
+    cat("counts loaded...\n")
     }else{
-      Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1, check.names = F)
-      cat("counts loaded...\n")
-    }
+    Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
+    cat("counts loaded...\n")
+  }
     
     if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
       stop("Error: symbol, ensemble or entrez are not provided in the first column")
@@ -1022,11 +1035,16 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     ################################################################################
     ###### T-ALL blast count prediction ############################################
     ################################################################################
-     if(is.na(Counts.file)){
-      Counts <- test_data
-     }else{
-      Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1, check.names = F)
-    }
+    if(is.na(Counts.file)){
+    Counts <- test_data
+    #cat("test counts loaded...\n")
+   } if is.data.frame(Counts.file) {
+    Counts <- Counts.file
+    #cat("counts loaded...\n")
+    }else{
+    Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
+    #cat("counts loaded...\n")
+  }
     
     if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
       stop("Error: symbol, ensemble or entrez are not provided in the first column")
@@ -1066,10 +1084,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)], nrow = nrow(Counts.norm), ncol = length(GenesNoFound))
     colnames(GenesNoFound_df) <- GenesNoFound
     Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
-                                                                           
-                                                                           
-                                                                           
-                                                                           
+                                                                            
     preds_TALL_BC <- list()
     train <- 1
     for (j in 1:length(models_TALL_BC)) {
@@ -1093,11 +1108,16 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     ################################################################################
     ###### create T-ALL marker gene expression summary #############################
     ################################################################################
-    if(is.na(Counts.file)){
-      Counts <- test_data
-     }else{
-      Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1, check.names = F)
-    }
+   if(is.na(Counts.file)){
+    Counts <- test_data
+   # cat("test counts loaded...\n")
+   } if is.data.frame(Counts.file) {
+    Counts <- Counts.file
+   # cat("counts loaded...\n")
+    }else{
+    Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
+   # cat("counts loaded...\n")
+  }
     
     if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
       stop("Error: symbol, ensemble or entrez are not provided in the first column")
