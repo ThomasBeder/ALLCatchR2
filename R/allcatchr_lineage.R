@@ -190,7 +190,7 @@ allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out
   ###### finalize output table ###################################################
   ################################################################################
   
-  output <- as.data.frame(cbind(output))
+  output <- as.data.frame(cbind(Lineage_preds))
   
   cat("predictions saved in:", getwd(),"\n")
   # save predictions
