@@ -44,7 +44,7 @@ allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out
     if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
       stop("Error: symbol, ensemble or entrez are not provided in the first column")
     }
-    ID_conv <- ID_conversion_TALL_subtype
+    ID_conv <- ID_conversion_Lineage
     # select the genes used for classifier trainig
     ma <- match(ID_conv[,match(ID_class, colnames(ID_conv))], rownames(Counts))
     Counts <- Counts[ma[!is.na(ma)],,drop = F]
@@ -177,8 +177,7 @@ allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out
     rownames(Lineage_preds) <- rownames(Counts.norm)
     colnames(Lineage_preds) <- names(models_L_Lineage)
 
-}
-  output <- Lineage_preds
+    output <- Lineage_preds
                                                                            
     ################################################################################
     ###### finalize output table ###################################################
