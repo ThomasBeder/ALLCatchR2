@@ -29,7 +29,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
   #loadNamespace("caret")
   # 1. preprocessing ############################################################
   # load count data, where the first column should be gene identifiers
-   if(!is.null(Counts.file)){
+   if(is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
@@ -365,7 +365,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
   ################################################################################  
   #### blast count prediction ####################################################  
   ################################################################################
- if(!is.null(Counts.file)){
+ if(is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
@@ -440,7 +440,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
   cat("Patient's sex prediction...\n")
   # 1. preprocessing ############################################################
   # load count data, where the first column should be gene identifiers
-   if(!is.null(Counts.file)){
+   if(is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
@@ -656,7 +656,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     #loadNamespace("caret")
     # 1. preprocessing ############################################################
     # load count data, where the first column should be gene identifiers
-   if(!is.null(Counts.file)){
+   if(is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
@@ -1035,7 +1035,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     ################################################################################
     ###### T-ALL blast count prediction ############################################
     ################################################################################
-    if(!is.null(Counts.file)){
+    if(is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
@@ -1108,7 +1108,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     ################################################################################
     ###### create T-ALL marker gene expression summary #############################
     ################################################################################
-    if(!is.null(Counts.file)){
+    if(is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
