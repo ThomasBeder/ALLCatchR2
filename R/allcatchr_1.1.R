@@ -32,7 +32,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
   if(is.na(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
-   } if is.data.frame(Counts.file) {
+   } if (is.data.frame(Counts.file)) {
     Counts <- Counts.file
     cat("counts loaded...\n")
     }else{
@@ -368,7 +368,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
  if(is.na(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
-   } if is.data.frame(Counts.file) {
+   } if (is.data.frame(Counts.file)) {
     Counts <- Counts.file
     cat("counts loaded...\n")
     }else{
@@ -443,7 +443,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
   if(is.na(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
-   } if is.data.frame(Counts.file) {
+   } if (is.data.frame(Counts.file)) {
     Counts <- Counts.file
     cat("counts loaded...\n")
     }else{
@@ -659,7 +659,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
    if(is.na(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
-   } if is.data.frame(Counts.file) {
+   } if (is.data.frame(Counts.file)) {
     Counts <- Counts.file
     cat("counts loaded...\n")
     }else{
@@ -1038,7 +1038,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
     if(is.na(Counts.file)){
     Counts <- test_data
     #cat("test counts loaded...\n")
-   } if is.data.frame(Counts.file) {
+   } if (is.data.frame(Counts.file)) {
     Counts <- Counts.file
     #cat("counts loaded...\n")
     }else{
@@ -1111,7 +1111,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NA, ID_class="symbol", 
    if(is.na(Counts.file)){
     Counts <- test_data
    # cat("test counts loaded...\n")
-   } if is.data.frame(Counts.file) {
+   } if (is.data.frame(Counts.file)) {
     Counts <- Counts.file
    # cat("counts loaded...\n")
     }else{
