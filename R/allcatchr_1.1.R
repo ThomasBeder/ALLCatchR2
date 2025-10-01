@@ -33,7 +33,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
-    Counts <- as.data.framve(cbind(gene = rownames(Counts.file), Counts.file))
+    Counts <- as.data.frame(cbind(gene = rownames(Counts.file), Counts.file))
     cat("counts loaded...\n")
     }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
@@ -369,7 +369,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
-    Counts <- as.data.framve(cbind(gene = rownames(Counts.file), Counts.file))
+    Counts <- as.data.frame(cbind(gene = rownames(Counts.file), Counts.file))
     cat("counts loaded...\n")
     }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
@@ -444,7 +444,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
-    Counts <- as.data.framve(cbind(gene = rownames(Counts.file), Counts.file))
+    Counts <- as.data.frame(cbind(gene = rownames(Counts.file), Counts.file))
     cat("counts loaded...\n")
     }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
@@ -660,7 +660,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
-    Counts <- as.data.framve(cbind(gene = rownames(Counts.file), Counts.file))
+    Counts <- as.data.frame(cbind(gene = rownames(Counts.file), Counts.file))
     cat("counts loaded...\n")
     }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
@@ -1039,7 +1039,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
-    Counts <- as.data.framve(cbind(gene = rownames(Counts.file), Counts.file))
+    Counts <- as.data.frame(cbind(gene = rownames(Counts.file), Counts.file))
     cat("counts loaded...\n")
     }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
@@ -1112,7 +1112,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
-    Counts <- as.data.framve(cbind(gene = rownames(Counts.file), Counts.file))
+    Counts <- as.data.frame(cbind(gene = rownames(Counts.file), Counts.file))
     cat("counts loaded...\n")
     }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
