@@ -681,9 +681,9 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     ma <- match(rownames(Counts), ID_conv[,match(ID_class, colnames(ID_conv))])
     rownames(Counts) <- ID_conv$symbol[ma]
     
-    # normalize data and scale between 0 and 1
+    # normalize data and scale
     Counts.norm <- Counts+1
-    Counts.norm <- apply(Counts.norm, 2, log10)
+    Counts.norm <- apply(Counts.norm, 2, log2)
     Counts.norm <- apply(Counts.norm, 2, scale)
   
     # transpose data
@@ -1060,9 +1060,9 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     ma <- match(rownames(Counts), ID_conv[,match(ID_class, colnames(ID_conv))])
     rownames(Counts) <- ID_conv$symbol[ma]
     
-    # normalize data and scale between 0 and 1
+    # normalize data and scale
     Counts.norm <- Counts+1
-    Counts.norm <- apply(Counts.norm, 2, log10)
+    Counts.norm <- apply(Counts.norm, 2, log)
     Counts.norm <- apply(Counts.norm, 2, scale)
   
     # transpose data
@@ -1135,7 +1135,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     
     # normalize data and scale between 0 and 1
     Counts.norm <- Counts+1
-    Counts.norm <- apply(Counts.norm, 2, log10)
+    Counts.norm <- apply(Counts.norm, 2, log2)
     Counts.norm <- apply(Counts.norm, 2, scale)
 
     rownames(Counts.norm) <- rownames(Counts)
