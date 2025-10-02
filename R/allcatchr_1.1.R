@@ -15,7 +15,12 @@ globalVariables(c("test_data","models_20","NH","BC_model_GMALL","BC_model_MLL","
 #' allcatchr_1.1()
 #'
 
-allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol", sep="\t", out.file=paste0(getwd(),"/predictions.tsv")) {
+allcatchr_1.1 <- function(Lineage = "B-ALL", 
+                          Counts.file=NULL, 
+                          ID_class="symbol", 
+                          sep="\t", 
+                          out.file=paste0(getwd(),"/predictions.tsv"),
+                          plot.path=paste0(getwd(),"/predictions")) {
   # Namespace from packages needed for prediction function using pre-trainted models
   loadNamespace("kknn")
   loadNamespace("ranger")
@@ -1235,7 +1240,9 @@ plottitle <- paste0(output$sample[i], "\nhigh-confidence: ",
                         output$`T-ALL immature candidate`[i]))
 plottitle <- gsub(";;","", plottitle, fixed = T)    
 
-plot <- ggplot2::ggplot(df, ggplot2::aes(y = cluster,
+plot <- suppressMessages(
+        suppressWarnings(
+          ggplot2::ggplot(df, ggplot2::aes(y = cluster,
                x = score)) + 
   ggplot2::ggtitle(plottitle) + 
   ggplot2::geom_bar(stat = "identity") +
@@ -1247,7 +1254,8 @@ plot <- ggplot2::ggplot(df, ggplot2::aes(y = cluster,
        # plot.title = ggplot2::element_blank(),
         text = ggplot2::element_text(size = 7)) +
   ggplot2::geom_hline(yintercept = c(1.5, 6.5), size = 0.1)
-
+)
+)
 #for (l in 1:length(high_confidence_cutoffs)) {
 #  plot <-  plot + annotate("segment", y = l-0.5, yend = l+0.5, x = rev(high_confidence_cutoffs)[l], xend =  rev(high_confidence_cutoffs)[l], colour = "black", size = 0.35, alpha = 0.5)
 #}
@@ -1260,7 +1268,7 @@ plot <- ggplot2::ggplot(df, ggplot2::aes(y = cluster,
 
     
     
-     ggplot2::ggsave(plot = plot, gsub(".tsv", paste0("/", make.names(output$sample[i]),".png"), out.file, fixed = T),
+     ggplot2::ggsave(plot = plot, paste0(plot.path,"/", make.names(output$sample[i]),".png"),
                      device = "png", width = 8, 
     height = 6, units = "in", dpi = 600)          
     }
