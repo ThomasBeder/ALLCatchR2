@@ -123,10 +123,13 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t",
     ggplot2::ggsave(plot = plot,
        out.file,
        device = "png", width = 8, height = 6, units = "in", dpi = 600)
-  # save predictions
-  cat("Writing output file:",paste0(out.file),"...\n")
-   return(umap_projection)
-   return(plot)
+
+  gsub(".png", ".tsv", out.file, fixed = T)
   
+  output <- list(umap_projection = umap_projection,
+                plot = plot)
+  # save predictions
+  cat("Writing output files:",paste0(out.file),"...\n")
+  return(output) 
 }
 
