@@ -949,7 +949,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     ################################################################################
 
     pred_idx <- which(TALL_subtype_peds$`T-ALL main-cluster high-confidence` != "")
-
+    if (length(pred_idx) > 0) {
     for (i in 1:length(pred_idx)) {
       TALL_subtype_peds$`T-ALL main-cluster candidate`[pred_idx[i]] <- 
         gsub(TALL_subtype_peds$`T-ALL main-cluster high-confidence`[pred_idx[i]], "",
@@ -964,7 +964,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
              TALL_subtype_peds$`T-ALL sub-cluster candidate`[pred_idx[i]], fixed = T)
       
     }
-    
+    }
     TALL_subtype_peds$`T-ALL sub-cluster candidate` <- sub("^;", "", TALL_subtype_peds$`T-ALL sub-cluster candidate`)
     TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- sub("^;", "", TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
     TALL_subtype_peds$`T-ALL sub-cluster candidate` <- sub(";$", "", TALL_subtype_peds$`T-ALL sub-cluster candidate`)
