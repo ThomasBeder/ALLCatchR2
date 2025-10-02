@@ -1225,10 +1225,7 @@ df <- data.frame(score = as.numeric(output[i, c(2:24)]))
 df$cluster <- colnames(output)[ c(2:24)]
 df$cluster <- factor(df$cluster, levels = rev(subtype_order))
 
-
-plot <- ggplot2::ggplot(df, ggplot2::aes(y = cluster,
-               x = score)) + 
-  ggplot2::ggtitle(paste0(output$sample[i], "\nhigh-confidence: ", 
+plottitle <- paste0(output$sample[i], "\nhigh-confidence: ", 
                  paste0(output$`T-ALL main-cluster high-confidence`[i],";",
                         output$`T-ALL sub-cluster high-confidence`[i],";",
                         output$`T-ALL immature high-confidence`[i]),                        
@@ -1236,7 +1233,11 @@ plot <- ggplot2::ggplot(df, ggplot2::aes(y = cluster,
                  paste0(output$`T-ALL main-cluster candidate`[i],";",
                         output$`T-ALL sub-cluster candidate`[i],";",
                         output$`T-ALL immature candidate`[i]))
-          )+ 
+plottitle <- gsub(";;","", plottitle, fixed = T)    
+
+plot <- ggplot2::ggplot(df, ggplot2::aes(y = cluster,
+               x = score)) + 
+  ggplot2::ggtitle(plottitle) + 
   ggplot2::geom_bar(stat = "identity") +
   ggplot2::theme_classic() + 
   ggplot2::coord_cartesian(clip = "off", xlim = c(0,1)) + 
