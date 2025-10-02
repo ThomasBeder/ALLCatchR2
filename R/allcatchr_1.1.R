@@ -1256,11 +1256,11 @@ plot <- suppressMessages(
 )
 )
 for (l in 1:nrow(TALL_subtype_cutoffs)) {
-  plot <-  plot + annotate("segment", y = l-0.5, yend = l+0.5, x = TALL_subtype_cutoffs$`high-confidence`[l], xend =  TALL_subtype_cutoffs$`high-confidence`[l], colour = "black", size = 0.35, alpha = 0.5)
+  plot <-  plot + ggplot2::annotate("segment", y = l-0.5, yend = l+0.5, x = TALL_subtype_cutoffs$`high-confidence`[l], xend =  TALL_subtype_cutoffs$`high-confidence`[l], colour = "black", size = 0.35, alpha = 0.5)
 }
 
 for (l in 1:nrow(TALL_subtype_cutoffs)) {
-  plot <-  plot + annotate("segment", y = l-0.5, yend = l+0.5, x = TALL_subtype_cutoffs$candidate[l], xend =  TALL_subtype_cutoffs$candidate[l], colour = "black", size = 0.35, alpha = 0.5)
+  plot <-  plot + ggplot2::annotate("segment", y = l-0.5, yend = l+0.5, x = TALL_subtype_cutoffs$candidate[l], xend =  TALL_subtype_cutoffs$candidate[l], colour = "black", size = 0.35, alpha = 0.5)
 }
 
 #plot <- plot + scale_y_discrete(labels = rev(c(paste0("C",1:17), "C1.1", "C1.2", "C12.1", "C12.2", "C12.3", "immature T-ALL\n(ETP-like)")))  
