@@ -124,8 +124,9 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t",
        out.file,
        device = "png", width = 8, height = 6, units = "in", dpi = 600)
 
-  gsub(".png", ".tsv", out.file, fixed = T)
   
+
+  utils::write.table(umap_projection,gsub(".png", ".tsv", out.file, fixed = T), sep = sep, row.names = F)
   output <- list(umap_projection = umap_projection,
                 plot = plot)
   # save predictions
