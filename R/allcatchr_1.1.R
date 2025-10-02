@@ -936,8 +936,34 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     TALL_subtype_peds$`T-ALL sub-cluster candidate` <- as.character(sapply(TALL_subtype_peds$`T-ALL sub-cluster candidate`, function(x) paste0(strsplit(x, ";")[[1]], collapse = ";")) )
     TALL_subtype_peds$`T-ALL sub-cluster candidate` <- sub("^;", "", TALL_subtype_peds$`T-ALL sub-cluster candidate`)
     TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- sub("^;", "", TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
+
+
+    ################################################################################
+    ###### clean up results table by removing high confidence predictions from candidate column #
+    ################################################################################
+
+    pred_idx <- which(TALL_subtype_peds$output$`T-ALL main-cluster high-confidence` != "")
+
+    for (i in 1:length(pred_idx)) {
+      TALL_subtype_peds$output$`T-ALL main-cluster candidate`[pred_idx[i]] <- 
+        gsub(TALL_subtype_peds$output$`T-ALL main-cluster high-confidence`[pred_idx[i]], "",
+        TALL_subtype_peds$output$`T-ALL main-cluster candidate`[pred_idx[i]], fixed = T)
+     
+    }
+    
+    pred_idx <- which(TALL_subtype_peds$output$`T-ALL sub-cluster high-confidence` != "")
+    for (i in 1:length(pred_idx)) {
+      TALL_subtype_peds$output$`T-ALL sub-cluster candidate`[pred_idx[i]] <- 
+        gsub(TALL_subtype_peds$output$`T-ALL sub-cluster high-confidence`[pred_idx[i]], "",
+             TALL_subtype_peds$output$`T-ALL sub-cluster candidate`[pred_idx[i]], fixed = T)
+      
+    }
+    
+    TALL_subtype_peds$`T-ALL sub-cluster candidate` <- sub("^;", "", TALL_subtype_peds$`T-ALL sub-cluster candidate`)
+    TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- sub("^;", "", TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
+    TALL_subtype_peds$`T-ALL sub-cluster candidate` <- sub(";$", "", TALL_subtype_peds$`T-ALL sub-cluster candidate`)
+    TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- sub(";$", "", TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
                                                                            
-    head(TALL_subtype_peds)
     output <- cbind(sample = rownames(TALL_subtype_peds), TALL_subtype_peds)
     
     ################################################################################
