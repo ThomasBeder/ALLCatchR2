@@ -1187,22 +1187,13 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     ################################################################################
                                                                            
     output <- as.data.frame(cbind(output, BC_pred = preds_TALL_BC$integrated, ssGSEA_Tdev, ssGSEA_progenitor_pop))
-    
-    cat("predictions saved in:", getwd(),"\n")
-    # save predictions
-    cat("Writing output file:",paste0(out.file),"...\n")
-    utils::write.table(output,out.file, sep = sep, row.names = F)
-    return(list(output = output,
-               TALL_marker_exp = TALL_marker_exp))
 
     ################################################################################
     ###### plot prediction scores ##################################################
     ################################################################################    
                                                                            
    dir.create(gsub(".tsv", "", out.file, fixed = T))     
-
-
-                                                                           
+                                                                          
   for (i in 1:nrow(output)) {                                                                           
 subtype_order <- c(
 "C1 (TAL1 αβ-like,LMO2 γδ-like)",	
@@ -1272,6 +1263,15 @@ plot <- ggplot2::ggplot(df, ggplot2::aes(y = cluster,
                      device = "png", width = 8, 
     height = 6, units = "in", dpi = 600)          
     }
+                                                                           
+    cat("predictions saved in:", getwd(),"\n")
+    # save predictions
+    cat("Writing output file:",paste0(out.file),"...\n")
+    utils::write.table(output,out.file, sep = sep, row.names = F)
+    return(list(output = output,
+               TALL_marker_exp = TALL_marker_exp))
+
+ 
                                                                            
  }
 }
