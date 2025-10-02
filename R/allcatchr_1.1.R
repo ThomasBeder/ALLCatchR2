@@ -1196,10 +1196,6 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     ################################################################################
     ###### plot prediction scores ##################################################
     ################################################################################    
-                                                                           
-   dir.create(plot.path)     
-                                                                          
-  for (i in 1:nrow(output)) {                                                                           
 subtype_order <- c(
 "C1 (TAL1 αβ-like,LMO2 γδ-like)",	
 "C2 (TAL1 DP-like)",
@@ -1224,7 +1220,10 @@ subtype_order <- c(
 "C1.1 (TAL1 αβ-like)",
 "C1.2 (LMO2 γδ-like)",
 "immature T-ALL (ETP-like)"
-)
+)                                           
+dir.create(plot.path)     
+TALL_subtype_cutoffs <-  TALL_subtype_cutoffs[match(rev(subtype_order), TALL_subtype_cutoffs$TALLsubtype),]                                                                       
+for (i in 1:nrow(output)) {                                                                           
 
 df <- data.frame(score = as.numeric(output[i, c(2:24)]))
 df$cluster <- colnames(output)[ c(2:24)]
@@ -1256,13 +1255,13 @@ plot <- suppressMessages(
   ggplot2::geom_hline(yintercept = c(1.5, 6.5), size = 0.1)
 )
 )
-#for (l in 1:length(high_confidence_cutoffs)) {
-#  plot <-  plot + annotate("segment", y = l-0.5, yend = l+0.5, x = rev(high_confidence_cutoffs)[l], xend =  rev(high_confidence_cutoffs)[l], colour = "black", size = 0.35, alpha = 0.5)
-#}
+for (l in 1:nrow(TALL_subtype_cutoffs)) {
+  plot <-  plot + annotate("segment", y = l-0.5, yend = l+0.5, x = TALL_subtype_cutoffs$`high-confidence`[l], xend =  TALL_subtype_cutoffs$`high-confidence`[l], colour = "black", size = 0.35, alpha = 0.5)
+}
 
-#for (l in 1:length(candidate_cutoffs)) {
-#  plot <-  plot + annotate("segment", y = l-0.5, yend = l+0.5, x = rev(candidate_cutoffs)[l], xend =  rev(candidate_cutoffs)[l], colour = "black", size = 0.35, alpha = 0.5)
-#}
+for (l in 1:nrow(TALL_subtype_cutoffs)) {
+  plot <-  plot + annotate("segment", y = l-0.5, yend = l+0.5, x = TALL_subtype_cutoffs$candidate[l], xend =  TALL_subtype_cutoffs$candidate[l], colour = "black", size = 0.35, alpha = 0.5)
+}
 
 #plot <- plot + scale_y_discrete(labels = rev(c(paste0("C",1:17), "C1.1", "C1.2", "C12.1", "C12.2", "C12.3", "immature T-ALL\n(ETP-like)")))  
 
