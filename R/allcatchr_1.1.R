@@ -1237,7 +1237,7 @@ plottitle <- paste0(output$sample[i], "\nhigh-confidence: ",
                  paste0(output$`T-ALL main-cluster candidate`[i],";",
                         output$`T-ALL sub-cluster candidate`[i],";",
                         output$`T-ALL immature candidate`[i]))
-plottitle <- gsub(";;","", plottitle, fixed = T)    
+plottitle <- gsub(";;",";", plottitle, fixed = T)    
 
 plot <- suppressMessages(
         suppressWarnings(
