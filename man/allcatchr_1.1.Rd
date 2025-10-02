@@ -4,7 +4,7 @@
 \alias{allcatchr_1.1}
 \title{Classification}
 \usage{
-allcatchr_1.1(Lineage = "B-ALL", Counts.file = NULL, ID_class = "symbol", sep = "\\t", out.file = "/path")
+allcatchr_1.1(Lineage = "B-ALL", Counts.file = NULL, ID_class = "symbol", sep = "\\t", out.file = "/path", plot.path = "/path")
 }
 \arguments{
 \item{Lineage}{disease Lineage c("B-ALL","T-ALL")}
@@ -18,6 +18,12 @@ allcatchr_1.1(Lineage = "B-ALL", Counts.file = NULL, ID_class = "symbol", sep = 
 }
 \value{
 data.frame containing class predictions
+}
+
+\item{plot.path}{plot files path}
+}
+\value{
+path to prediction scores plots
 }
 \description{
 Prediction of B-ALL leukemia subtypes based on expression data
