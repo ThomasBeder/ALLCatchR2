@@ -1243,7 +1243,7 @@ plot <- ggplot2::ggplot(df, ggplot2::aes(y = cluster,
   ggplot2::scale_x_continuous(breaks = c(0, 0.5, 1)) + 
   ggplot2::theme(legend.position = "none", 
         axis.title.y = ggplot2::element_blank(),
-        plot.title = ggplot2::element_blank(),
+       # plot.title = ggplot2::element_blank(),
         text = ggplot2::element_text(size = 7)) +
   ggplot2::geom_hline(yintercept = c(1.5, 6.5), size = 0.1)
 
@@ -1259,7 +1259,7 @@ plot <- ggplot2::ggplot(df, ggplot2::aes(y = cluster,
 
     
     
-     ggplot2::ggsave(plot = plot, gsub(".tsv", paste0("/", output$sample[i],".png"), out.file, fixed = T),
+     ggplot2::ggsave(plot = plot, gsub(".tsv", paste0("/", make.names(output$sample[i]),".png"), out.file, fixed = T),
                      device = "png", width = 8, 
     height = 6, units = "in", dpi = 600)          
     }
