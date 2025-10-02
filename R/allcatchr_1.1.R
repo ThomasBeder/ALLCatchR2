@@ -1197,7 +1197,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     ###### plot prediction scores ##################################################
     ################################################################################    
                                                                            
-   dir.create(gsub(".tsv", "", out.file, fixed = T))     
+   dir.create(plot.path)     
                                                                           
   for (i in 1:nrow(output)) {                                                                           
 subtype_order <- c(
