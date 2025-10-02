@@ -19,7 +19,6 @@ allcatchr_1.1(Lineage = "B-ALL", Counts.file = NULL, ID_class = "symbol", sep = 
 }
 \value{
 data.frame containing class predictions
-
 }
 \description{
 Prediction of B-ALL leukemia subtypes based on expression data
