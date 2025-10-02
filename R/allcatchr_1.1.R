@@ -942,20 +942,20 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     ###### clean up results table by removing high confidence predictions from candidate column #
     ################################################################################
 
-    pred_idx <- which(TALL_subtype_peds$output$`T-ALL main-cluster high-confidence` != "")
+    pred_idx <- which(TALL_subtype_peds$`T-ALL main-cluster high-confidence` != "")
 
     for (i in 1:length(pred_idx)) {
-      TALL_subtype_peds$output$`T-ALL main-cluster candidate`[pred_idx[i]] <- 
-        gsub(TALL_subtype_peds$output$`T-ALL main-cluster high-confidence`[pred_idx[i]], "",
-        TALL_subtype_peds$output$`T-ALL main-cluster candidate`[pred_idx[i]], fixed = T)
+      TALL_subtype_peds$`T-ALL main-cluster candidate`[pred_idx[i]] <- 
+        gsub(TALL_subtype_peds$`T-ALL main-cluster high-confidence`[pred_idx[i]], "",
+        TALL_subtype_peds$`T-ALL main-cluster candidate`[pred_idx[i]], fixed = T)
      
     }
     
-    pred_idx <- which(TALL_subtype_peds$output$`T-ALL sub-cluster high-confidence` != "")
+    pred_idx <- which(TALL_subtype_peds$`T-ALL sub-cluster high-confidence` != "")
     for (i in 1:length(pred_idx)) {
-      TALL_subtype_peds$output$`T-ALL sub-cluster candidate`[pred_idx[i]] <- 
-        gsub(TALL_subtype_peds$output$`T-ALL sub-cluster high-confidence`[pred_idx[i]], "",
-             TALL_subtype_peds$output$`T-ALL sub-cluster candidate`[pred_idx[i]], fixed = T)
+      TALL_subtype_peds$`T-ALL sub-cluster candidate`[pred_idx[i]] <- 
+        gsub(TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[pred_idx[i]], "",
+             TALL_subtype_peds$`T-ALL sub-cluster candidate`[pred_idx[i]], fixed = T)
       
     }
     
