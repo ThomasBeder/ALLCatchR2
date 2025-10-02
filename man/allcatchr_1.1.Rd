@@ -15,15 +15,11 @@ allcatchr_1.1(Lineage = "B-ALL", Counts.file = NULL, ID_class = "symbol", sep = 
 \item{sep}{file seperator}
 
 \item{out.file}{output file path}
+\item{plot.path}{path to prediction scores plots}
 }
 \value{
 data.frame containing class predictions
-}
 
-\item{plot.path}{plot files path}
-}
-\value{
-path to prediction scores plots
 }
 \description{
 Prediction of B-ALL leukemia subtypes based on expression data
