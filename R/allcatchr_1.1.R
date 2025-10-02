@@ -22,8 +22,9 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
   loadNamespace("randomForest")
   loadNamespace("LiblineaR")
   loadNamespace("glmnet")
-  loadNamespace("elasticnet")  
-  
+  loadNamespace("elasticnet")
+  loadNamespace("ggplot2")
+   
   if (Lineage == "B-ALL") {
   
   #loadNamespace("caret")
@@ -974,7 +975,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     TALL_subtype_peds$`T-ALL immature high-confidence`] <- ""
                                                                            
     output <- cbind(sample = rownames(TALL_subtype_peds), TALL_subtype_peds)
-    
+
     ################################################################################
     ###### T cell progenitor ssGSEA ################################################
     ################################################################################
@@ -1194,5 +1195,83 @@ allcatchr_1.1 <- function(Lineage = "B-ALL", Counts.file=NULL, ID_class="symbol"
     return(list(output = output,
                TALL_marker_exp = TALL_marker_exp))
 
+    ################################################################################
+    ###### plot prediction scores ##################################################
+    ################################################################################    
+                                                                           
+   dir.create(gsub(".tsv", "", out.file, fixed = T))     
+
+
+                                                                           
+  for (i in 1:nrow(output)) {                                                                           
+subtype_order <- c(
+"C1 (TAL1 αβ-like,LMO2 γδ-like)",	
+"C2 (TAL1 DP-like)",
+"C3 (NKX2-1 other)",
+"C4 (NKX2-1 TCR)",
+"C5 (GATA3mut enriched)",
+"C6 (SPI1)",
+"C7 (STAG2/LMO2)",
+"C8 (BCL11B)",
+"C9 (MLLT10, NUP214)",
+"C10 (KMT2A)",
+"C11 (ZFP36L2)",
+"C12 (MED12, HOXA13, ZFP36L2, CH-related)",
+"C13 (NUP214, MLLT10, KMT2A)",
+"C14 (HOXA9/10 TCR)",
+"C15 (TLX1)",
+"C16 (TLX3)",	
+"C17 (TLX3plus)",
+"C12.1 (MED12, ZFP36L2)",
+"C12.2 (HOXA13)",
+"C12.3 (CH-related)",
+"C1.1 (TAL1 αβ-like)",
+"C1.2 (LMO2 γδ-like)",
+"immature T-ALL (ETP-like)"
+)
+
+df <- data.frame(score = as.numeric(output[i, c(2:24)]))
+df$cluster <- colnames(output)[ c(2:24)]
+df$cluster <- factor(df$cluster, levels = rev(subtype_order))
+
+
+plot <- ggplot2::ggplot(df, ggplot2::aes(y = cluster,
+               x = score)) + 
+  ggplot2::ggtitle(paste0(output[i], "\nhigh-confidence: ", 
+                 paste0(output$`T-ALL main-cluster high-confidence`[i],
+                        output$`T-ALL sub-cluster high-confidence`[i],
+                        output$`T-ALL immature high-confidence`[i]),                        
+                        "\ncandidate: ", 
+                 paste0(output$`T-ALL main-cluster candidate`[i],
+                        output$`T-ALL sub-cluster candidate`[i],
+                        output$`T-ALL immature candidate`[i]))
+          )+ 
+  ggplot2::geom_bar(stat = "identity") +
+  ggplot2::theme_classic() + 
+  ggplot2::coord_cartesian(clip = "off", xlim = c(0,1)) + 
+  ggplot2::scale_x_continuous(breaks = c(0, 0.5, 1)) + 
+  ggplot2::theme(legend.position = "none", 
+        axis.title.y = ggplot2::element_blank(),
+        plot.title = ggplot2::element_blank(),
+        text = ggplot2::element_text(size = 7)) +
+  ggplot2::geom_hline(yintercept = c(1.5, 6.5), size = 0.1)
+
+#for (l in 1:length(high_confidence_cutoffs)) {
+#  plot <-  plot + annotate("segment", y = l-0.5, yend = l+0.5, x = rev(high_confidence_cutoffs)[l], xend =  rev(high_confidence_cutoffs)[l], colour = "black", size = 0.35, alpha = 0.5)
+#}
+
+#for (l in 1:length(candidate_cutoffs)) {
+#  plot <-  plot + annotate("segment", y = l-0.5, yend = l+0.5, x = rev(candidate_cutoffs)[l], xend =  rev(candidate_cutoffs)[l], colour = "black", size = 0.35, alpha = 0.5)
+#}
+
+#plot <- plot + scale_y_discrete(labels = rev(c(paste0("C",1:17), "C1.1", "C1.2", "C12.1", "C12.2", "C12.3", "immature T-ALL\n(ETP-like)")))  
+
+    
+    
+     ggplot2::ggsave(plot = plot, gsub(".tsv", paste0("/", output$sample[i],".png"), out.file, fixed = T),
+                     device = "png", width = 8, 
+    height = 6, units = "in", dpi = 600)          
     }
+                                                                           
+ }
 }
