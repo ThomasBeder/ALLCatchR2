@@ -500,7 +500,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
   GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)], nrow = nrow(Counts.norm), ncol = length(GenesNoFound))
   colnames(GenesNoFound_df) <- GenesNoFound
   Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
-  colnames(Counts.norm) <- colnames(Counts.norm)
+  colnames(Counts.norm) <- make.names(colnames(Counts.norm))
   
   preds <- list()
   for (i in 1:length(models_L_sex)) {
