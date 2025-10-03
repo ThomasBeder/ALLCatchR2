@@ -17,7 +17,7 @@ globalVariables(c("test_data","TALL_umap_model"))
 allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", 
                                   sep="\t", 
                                   out.file=paste0(getwd(),"/TALL_projection.tsv"), 
-                                  plot.file = out.file=paste0(getwd(),"/TALL_projection.png"),
+                                  plot.file = paste0(getwd(),"/TALL_projection.png"),
                                   plot.width = 8, 
                                   plot.height = 6,
                                  label.size = 3) {
