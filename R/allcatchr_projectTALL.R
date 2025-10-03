@@ -39,7 +39,7 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t",
     Counts <- Counts.file
     cat("counts loaded...\n")
   }else{
-    Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
+    Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1,check.names = F)
     cat("counts loaded...\n")
   }
   
