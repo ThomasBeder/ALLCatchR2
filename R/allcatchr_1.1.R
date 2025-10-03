@@ -1276,7 +1276,7 @@ for (l in 1:nrow(TALL_subtype_cutoffs)) {
     cat("predictions score plots are saved in:", paste0(plot.path),"\n")                                                                       
     cat("predictions saved in:", paste0(out.file),"\n")
     # save predictions
-    cat("Writing output file:",paste0(out.file),"...\n")
+  #  cat("Writing output file:",paste0(out.file),"...\n")
     utils::write.table(output,out.file, sep = sep, row.names = F)
     return(list(output = output,
                TALL_marker_exp = TALL_marker_exp))
