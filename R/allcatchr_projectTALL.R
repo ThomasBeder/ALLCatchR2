@@ -93,7 +93,7 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t",
 
     TALL_subtypes_umap_P <- as.data.frame(rbind(umap_projection, TALL_subtypes_umap_P))
 
-    plot <- ggplot2::ggplot(TALL_subtypes_umap_P, ggplot2::aes(x=X1, y=X2, color = pred_final, label = label
+    plot <- suppressWarnings({ggplot2::ggplot(TALL_subtypes_umap_P, ggplot2::aes(x=X1, y=X2, color = pred_final, label = label
     )) +
       ggplot2::geom_point(size = 0.75,alpha = 1) + 
       ggplot2::geom_point(data = TALL_subtypes_umap_P[which(TALL_subtypes_umap_P$pred_final == "query"),],
@@ -119,10 +119,10 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t",
       ) +
       ggplot2::guides(color = ggplot2::guide_legend(override.aes = list(size = 1), ncol = 1),
              shape = ggplot2::guide_legend(override.aes = list(size = 1), ncol = 1))
-   
-    ggplot2::ggsave(plot = plot,
+   })
+    suppressWarnings({ggplot2::ggsave(plot = plot,
        out.file,
-       device = "png", width = 8, height = 6, units = "in", dpi = 600)
+       device = "png", width = 8, height = 6, units = "in", dpi = 600)})
 
    cat("UMAP projection is saved in:", paste0(out.file),"\n")                                                                       
    cat("UMAP projection table is saved in:", paste0(gsub(".png", ".tsv", out.file, fixed = T)),"\n")
