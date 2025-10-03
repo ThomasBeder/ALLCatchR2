@@ -371,7 +371,8 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
   ################################################################################  
   #### blast count prediction ####################################################  
   ################################################################################
- if(is.null(Counts.file)){
+ cat("Blast count prediction...\n")
+  if(is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
@@ -1076,7 +1077,8 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     ################################################################################
     ###### T-ALL blast count prediction ############################################
     ################################################################################
-    if(is.null(Counts.file)){
+   cat("Blast count prediction...\n") 
+   if(is.null(Counts.file)){
     Counts <- test_data
     cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
@@ -1151,13 +1153,13 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     ################################################################################
     if(is.null(Counts.file)){
     Counts <- test_data
-    cat("test counts loaded...\n")
+ #   cat("test counts loaded...\n")
    } else if (is.data.frame(Counts.file)) {
     Counts <- Counts.file
-    cat("counts loaded...\n")
+#    cat("counts loaded...\n")
     }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1)
-    cat("counts loaded...\n")
+#    cat("counts loaded...\n")
   }
     
     if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
@@ -1196,6 +1198,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     ################################################################################
     ###### plot prediction scores ##################################################
     ################################################################################    
+   cat("plot prediction scores per sample...\n")
 subtype_order <- c(
 "C1 (TAL1 αβ-like,LMO2 γδ-like)",	
 "C2 (TAL1 DP-like)",
@@ -1271,15 +1274,12 @@ for (l in 1:nrow(TALL_subtype_cutoffs)) {
                      device = "png", width = 8, 
     height = 6, units = "in", dpi = 600)          
     }
-                                                                           
-    cat("predictions saved in:", getwd(),"\n")
+    cat("predictions score plots are saved in:", paste0(plot.path),"\n")                                                                       
+    cat("predictions saved in:", paste0(out.file),"\n")
     # save predictions
     cat("Writing output file:",paste0(out.file),"...\n")
     utils::write.table(output,out.file, sep = sep, row.names = F)
     return(list(output = output,
                TALL_marker_exp = TALL_marker_exp))
-
- 
-                                                                           
  }
 }
