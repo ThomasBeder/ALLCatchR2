@@ -13,7 +13,16 @@ allcatchr_projectTALL(Counts.file = NULL, ID_class = "symbol", sep = "\\t", out.
 
 \item{sep}{file seperator}
 
-\item{out.file}{output file path}
+\item{out.file}{output file path, default: "TALL_projection.tsv"}
+
+\item{plot.file}{plot file path, default: "TALL_projection.png"}
+
+\item{plot.width}{plot width in inch, default: 8}
+
+\item{plot.height}{plot height in inch, default: 6}
+
+\item{label.size}{sample label size, default: 3}
+
 }
 \value{
 data.frame containing class predictions
