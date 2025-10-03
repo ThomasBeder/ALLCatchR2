@@ -4,7 +4,13 @@
 \alias{allcatchr_projectTALL}
 \title{Classification}
 \usage{
-allcatchr_projectTALL(Counts.file = NULL, ID_class = "symbol", sep = "\\t", out.file = "/path")
+allcatchr_projectTALL(Counts.file=NULL, ID_class="symbol", 
+                                  sep="\t", 
+                                  out.file=paste0(getwd(),"/TALL_projection.tsv"), 
+                                  plot.file = out.file=paste0(getwd(),"/TALL_projection.png"),
+                                  plot.width = 8, 
+                                  plot.height = 6,
+                                 label.size = 3)
 }
 \arguments{
 \item{Counts.file}{count data provided as data frame object with genes in rows and samples in columns or a path to a text file}
