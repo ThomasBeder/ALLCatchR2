@@ -484,7 +484,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
   # transpose data
   Counts.norm <- as.data.frame(t(Counts.norm))
   colnames(Counts.norm) <- rownames(Counts)
-  colnames(Counts.norm) <- colnames(Counts.norm)
+  colnames(Counts.norm) <- make.names(colnames(Counts.norm))
   
   # find genes not provided by user
   ma <- match(ID_conv$symbol, rownames(Counts))
