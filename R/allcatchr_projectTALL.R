@@ -14,7 +14,13 @@ globalVariables(c("test_data","TALL_umap_model"))
 #' allcatchr_projectTALL()
 #'
 
-allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out.file=paste0(getwd(),"/TALL_projection.tsv")) {
+allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", 
+                                  sep="\t", 
+                                  out.file=paste0(getwd(),"/TALL_projection.tsv"), 
+                                  plot.file = out.file=paste0(getwd(),"/TALL_projection.png"),
+                                  plot.width = 8, 
+                                  plot.height = 6,
+                                 label.size = 3) {
   # Namespace from packages needed for prediction function using pre-trainted models
   loadNamespace("kknn")
   loadNamespace("ranger")
@@ -102,7 +108,7 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t",
       ggplot2::ylab("UMAP 2") +
       ggplot2::theme_bw() +
       ggplot2::scale_color_manual(values = TALL_subtype_colors) +
-      ggrepel::geom_text_repel(max.overlaps = 1000, size= 3, min.segment.length = 0, color = "black") + 
+      ggrepel::geom_text_repel(max.overlaps = 1000, size= label.size, min.segment.length = 0, color = "black") + 
       ggplot2::theme( text = ggplot2::element_text(size = 8), 
              #axis.title = element_blank(), 
              #legend.title = element_blank(),
@@ -121,13 +127,13 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t",
              shape = ggplot2::guide_legend(override.aes = list(size = 1), ncol = 1))
    })
     suppressWarnings({ggplot2::ggsave(plot = plot,
-       out.file,
-       device = "png", width = 8, height = 6, units = "in", dpi = 600)})
+       plot.file,
+       device = "png", width = plot.width, height = plot.height, units = "in", dpi = 600)})
 
    cat("UMAP projection is saved in:", paste0(out.file),"\n")                                                                       
    cat("UMAP projection table is saved in:", paste0(gsub(".png", ".tsv", out.file, fixed = T)),"\n")
 
-  utils::write.table(umap_projection,gsub(".png", ".tsv", out.file, fixed = T), sep = sep, row.names = F)
+  utils::write.table(umap_projection, out.file, sep = sep, row.names = F)
   output <- list(umap_projection = umap_projection,
                 plot = plot)
   # return predictions
