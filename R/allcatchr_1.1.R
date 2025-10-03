@@ -381,7 +381,7 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     }else{
     Counts <- utils::read.csv(Counts.file, sep = sep, stringsAsFactors = F, row.names = 1, check.names = F)
     cat("counts loaded...\n")
-  }check.names = F
+  }
   
   if (length(rownames(Counts)) == length(which(rownames(Counts) == as.character(1:nrow(Counts))))) {
     #    stop("Error: symbol, ensemble or entrez are not provided in the first column")
