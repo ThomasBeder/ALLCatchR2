@@ -1242,8 +1242,7 @@ plottitle <- paste0(output$sample[i], "\nhigh-confidence: ",
                         output$`T-ALL immature candidate`[i]))
 plottitle <- gsub(";;",";", plottitle, fixed = T)    
 
-plot <- suppressMessages(
-        suppressWarnings(
+plot <- suppressWarnings({
           ggplot2::ggplot(df, ggplot2::aes(y = cluster,
                x = score)) + 
   ggplot2::ggtitle(plottitle) + 
@@ -1256,8 +1255,8 @@ plot <- suppressMessages(
        # plot.title = ggplot2::element_blank(),
         text = ggplot2::element_text(size = 7)) +
   ggplot2::geom_hline(yintercept = c(1.5, 6.5), size = 0.1)
-)
-)
+})
+
 for (l in 1:nrow(TALL_subtype_cutoffs)) {
   plot <-  plot + ggplot2::annotate("segment", y = l-0.5, yend = l+0.5, x = TALL_subtype_cutoffs$`high-confidence`[l], xend =  TALL_subtype_cutoffs$`high-confidence`[l], colour = "black", size = 0.5, alpha = 0.5)
 }
@@ -1270,9 +1269,9 @@ for (l in 1:nrow(TALL_subtype_cutoffs)) {
 
     
     
-     ggplot2::ggsave(plot = plot, paste0(plot.path,"/", make.names(output$sample[i]),".png"),
+     suppressWarnings({ggplot2::ggsave(plot = plot, paste0(plot.path,"/", make.names(output$sample[i]),".png"),
                      device = "png", width = 8, 
-    height = 6, units = "in", dpi = 600)          
+    height = 6, units = "in", dpi = 600)})          
     }
     cat("predictions score plots are saved in:", paste0(plot.path),"\n")                                                                       
     cat("predictions saved in:", paste0(out.file),"\n")
