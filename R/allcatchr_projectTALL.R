@@ -124,13 +124,13 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t",
        out.file,
        device = "png", width = 8, height = 6, units = "in", dpi = 600)
 
-  
+   cat("UMAP projection is saved in:", paste0(out.file),"\n")                                                                       
+   cat("UMAP projection table is saved in:", paste0(gsub(".png", ".tsv", out.file, fixed = T)),"\n")
 
   utils::write.table(umap_projection,gsub(".png", ".tsv", out.file, fixed = T), sep = sep, row.names = F)
   output <- list(umap_projection = umap_projection,
                 plot = plot)
-  # save predictions
-  cat("Writing output files:",paste0(out.file),"...\n")
+  # return predictions
   return(output) 
 }
 
