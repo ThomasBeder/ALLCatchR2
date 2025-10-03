@@ -192,7 +192,7 @@ allcatchr_lineage <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out
   
   output <- as.data.frame(cbind(Lineage_preds))
   
-  cat("predictions saved in:", getwd(),"\n")
+  cat("Lienage predictions saved in:", getwd(),"\n")
   # save predictions
   cat("Writing output file:",paste0(out.file),"...\n")
   utils::write.table(output,out.file, sep = sep, row.names = F)
