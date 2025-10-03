@@ -14,7 +14,7 @@ globalVariables(c("test_data","TALL_umap_model"))
 #' allcatchr_projectTALL()
 #'
 
-allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out.file=paste0(getwd(),"/TALL_projection.png")) {
+allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol", sep="\t", out.file=paste0(getwd(),"/TALL_projection.tsv")) {
   # Namespace from packages needed for prediction function using pre-trainted models
   loadNamespace("kknn")
   loadNamespace("ranger")
