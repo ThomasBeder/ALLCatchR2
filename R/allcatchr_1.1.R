@@ -1269,7 +1269,7 @@ for (l in 1:nrow(TALL_subtype_cutoffs)) {
 
     
     
-     suppressWarnings({ggplot2::ggsave(plot = plot, paste0(plot.path,"/", make.names(output$sample[i]),".png"),
+     suppressWarnings({ggplot2::ggsave(plot = plot, paste0(plot.path,"/", output$sample[i],".png"),
                      device = "png", width = 8, 
     height = 6, units = "in", dpi = 600)})          
     }
