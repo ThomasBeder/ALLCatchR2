@@ -98,7 +98,7 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol",
     )
 
     TALL_subtypes_umap_P <- as.data.frame(rbind(umap_projection, TALL_subtypes_umap_P))
-
+    TALL_subtypes_umap_P$pred_final <- factor(TALL_subtypes_umap_P$pred_final, levels = names(TALL_subtype_colors))
     plot <- suppressWarnings({ggplot2::ggplot(TALL_subtypes_umap_P, ggplot2::aes(x=X1, y=X2, color = pred_final, label = label
     )) +
       ggplot2::geom_point(size = 0.75,alpha = 1) + 
