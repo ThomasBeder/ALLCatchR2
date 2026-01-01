@@ -885,11 +885,11 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     
     if (length(pos2) > 0) {  
     
-    TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2] <- gsub("C12.1 (MED12, ZFP36L2)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2])
+    TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2] <- gsub("C12.1 (MED12)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2])
     TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2] <- gsub("C12.2 (HOXA13)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2])
     TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2] <- gsub("C12.3 (CH-related)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`[-pos2])
     } else {
-      TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- gsub("C12.1 (MED12, ZFP36L2)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
+      TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- gsub("C12.1 (MED12)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
       TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- gsub("C12.2 (HOXA13)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
       TALL_subtype_peds$`T-ALL sub-cluster high-confidence` <- gsub("C12.3 (CH-related)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster high-confidence`)
       }
@@ -916,22 +916,22 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     pos2 <- grep("C12 (MED12, HOXA13, ZFP36L2, CH-related)", TALL_subtype_peds$`T-ALL main-cluster candidate`, fixed = T)
     
     if (length(pos2) > 0) {    
-    TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.1 (MED12, ZFP36L2)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
+    TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.1 (MED12)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.2 (HOXA13)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
     TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2] <- gsub("C12.3 (CH-related)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`[-pos2])
   
     ## set subcluster scores to NA in cases not predicted to be C12
-     TALL_subtype_peds$`C12.1 (MED12, ZFP36L2)`[-pos2] <- NA
+     TALL_subtype_peds$`C12.1 (MED12)`[-pos2] <- NA
      TALL_subtype_peds$`C12.2 (HOXA13)`[-pos2] <- NA
      TALL_subtype_peds$`C12.3 (CH-related)`[-pos2] <- NA
       
     } else {
-      TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.1 (MED12, ZFP36L2)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
+      TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.1 (MED12)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
       TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.2 (HOXA13)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
       TALL_subtype_peds$`T-ALL sub-cluster candidate` <- gsub("C12.3 (CH-related)", "", fixed = T, TALL_subtype_peds$`T-ALL sub-cluster candidate`)
     
      ## set subcluster scores to NA in cases not predicted to be C12
-     TALL_subtype_peds$`C12.1 (MED12, ZFP36L2)` <- NA
+     TALL_subtype_peds$`C12.1 (MED12)` <- NA
      TALL_subtype_peds$`C12.2 (HOXA13)` <- NA
      TALL_subtype_peds$`C12.3 (CH-related)` <- NA
       
@@ -1204,7 +1204,7 @@ subtype_order <- c(
 "C2 (TAL1 DP-like)",
 "C3 (NKX2-1 other)",
 "C4 (NKX2-1 TCR)",
-"C5 (GATA3mut enriched)",
+"C5 (GATA3 enriched)",
 "C6 (SPI1)",
 "C7 (STAG2/LMO2)",
 "C8 (BCL11B)",
@@ -1215,9 +1215,9 @@ subtype_order <- c(
 "C13 (NUP214, MLLT10, KMT2A)",
 "C14 (HOXA9/10 TCR)",
 "C15 (TLX1)",
-"C16 (TLX3)",	
-"C17 (TLX3plus)",
-"C12.1 (MED12, ZFP36L2)",
+"C16 (TLX3 DP-like)",	
+"C17 (TLX3 immature)",
+"C12.1 (MED12)",
 "C12.2 (HOXA13)",
 "C12.3 (CH-related)",
 "C1.1 (TAL1 αβ-like)",
