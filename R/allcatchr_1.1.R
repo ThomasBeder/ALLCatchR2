@@ -818,10 +818,10 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     # add C1.2 (LMO2 γδ-like) predictions scores
     TALL_subtype_peds <- as.data.frame(cbind(TALL_subtype_peds[,1:21], 
                                                                "C1.2 (LMO2 γδ-like)" = 1-TALL_subtype_peds$`C1.1 (TAL1 αβ-like)`,
-                                             TALL_subtype_peds$`immature T-ALL (ETP-like)`))
+                                             TALL_subtype_peds$`Immature T-ALL (ETP-like)`))
     
     head(TALL_subtype_peds)
-    colnames(TALL_subtype_peds)[23] <- "immature T-ALL (ETP-like)"
+    colnames(TALL_subtype_peds)[23] <- "Immature T-ALL (ETP-like)"
     
     
     head(TALL_subtype_peds)
@@ -1219,7 +1219,7 @@ subtype_order <- c(
 "C12.3 (CH-related)",
 "C1.1 (TAL1 αβ-like)",
 "C1.2 (LMO2 γδ-like)",
-"immature T-ALL (ETP-like)"
+"Immature T-ALL (ETP-like)"
 )                                           
 dir.create(plot.path)     
 TALL_subtype_cutoffs <-  TALL_subtype_cutoffs[match(rev(subtype_order), TALL_subtype_cutoffs$TALLsubtype),]                                                                       
