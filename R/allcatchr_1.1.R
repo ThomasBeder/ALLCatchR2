@@ -786,9 +786,6 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
       
     }
     
-    length(pred_ind_model)
-    lapply(pred_ind_model, dim)
-    
     Means <- list()
     
     for (j in 1:ncol(pred_ind_model[[1]])) {
