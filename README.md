@@ -44,7 +44,7 @@ Arguments:
 - plot.path	= for each sample a bar chart with the prediction scores for the individual T-ALL subtypes is generated, this is the path where the plots should be saved
 ```
 
-    The T-ALL classification module creates two data frames in ```out``` one with expression for certain T-ALL marker genes and one with the prediction results.
+  The T-ALL classification module creates two data frames in ```out``` one with expression for certain T-ALL marker genes and one with the prediction results.
     The prediction results contain the following columns:
     - sample: Sample ID
     - 2-24 Scores: T-ALL subtype main- and sub-cluster predicitons scores
