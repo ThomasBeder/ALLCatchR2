@@ -4,8 +4,10 @@
 - https://doi.org/10.1097/HS9.0000000000000939 (https://github.com/ThomasBeder/ALLCatchR_bcrabl1)
 
 # T-ALL subtype classification
-The T-ALL subtype  prediction module of ALLCatchR is able to predict 20 T-ALL gene expression subtypes and a driver overarching definition of immature T-ALL (ETP-like):
+The T-ALL subtype  prediction module of ALLCatchR was established on 2,314 T-ALL samples from 15 cohorts (age: 0.8-90.08) and is able to predict 20 T-ALL gene expression subtypes and a driver overarching definition of immature T-ALL (ETP-like):
 - https://library.ehaweb.org/eha/2025/eha2025-congress/4159185/thomas.beder.a.gene.expression.based.machine.learning.classifier.robustly.html?f=listing%3D4%2Abrowseby%3D8%2Asortby%3D2%2Amedia%3D3%2Aspeaker%3D1045302 
+
+
 
 _ALLCatchR2_ was developed to predict:
 - 20 T-ALL gene expression subtypes and a driver overarching definition of immature T-ALL / ETP-like
