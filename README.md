@@ -51,9 +51,7 @@ The prediction results contain the following columns:
 - 25-30 Predicitons: high-confidence and candidate level predictions for main-, sub-cluser and immature T-ALL (ETP-like)
 - BC_pred: Blast count predictions score
 - 32-57: ssGSEA to T-cell and hematopoietic developmental stages. Gene sets were defined from scRNA-seq data of thymic and hematopoietic cell types (https://www.science.org/doi/10.1126/science.aay3224)
-- Aditionally, expression of T-ALL marker and driver genes with expression statistic in T-ALL.
-
-
+- panHSPC, BMPlike_119: Recent studies have identified bone marrow progenitor (BMP)-like subpopulations in T-ALL and hematopoietic stem/progenitor cell-like (HSPC-like) populations across leukemias associated with chemoresistance and poor outcomes. In this columns ssGSEA results to the gene sets defined for these populations as well as their percentile across all T-ALL samples are shown.
 ```
 
 
