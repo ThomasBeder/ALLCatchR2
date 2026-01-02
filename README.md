@@ -28,7 +28,7 @@ library(ALLCatchR2)
 out <- allcatchr_1.1()
 ```
 
-## Run ALLCatchR2
+## Run T-ALL subtype classification
 As input ALLCatchR2 requires a single text file in which the first column are the gene symbols/IDs and the other columns the count data for each sample
 
   - T-ALL subtype classification
