@@ -7,6 +7,14 @@
 The T-ALL subtype  prediction module of ALLCatchR was established on 2,314 T-ALL samples from 15 cohorts (age: 0.8-90.08) and is able to predict 20 T-ALL gene expression subtypes and a driver overarching definition of immature T-ALL (ETP-like):
 - https://library.ehaweb.org/eha/2025/eha2025-congress/4159185/thomas.beder.a.gene.expression.based.machine.learning.classifier.robustly.html?f=listing%3D4%2Abrowseby%3D8%2Asortby%3D2%2Amedia%3D3%2Aspeaker%3D1045302 
 
+![image](Visual_abstract.png)
+
+
+# _BCR::ABL1_ gene expression subclusters
+<img src="https://github.com/ThomasBeder/ALLCatchR_bcrabl1/blob/main/ALLCatchRbcrabl1.png" width=100% height=100%>
+
+
+Visual_abstract.png
 
 
 _ALLCatchR2_ was developed to predict:
