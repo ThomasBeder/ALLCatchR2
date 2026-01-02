@@ -44,14 +44,14 @@ Arguments:
 - plot.path	= for each sample a bar chart with the prediction scores for the individual T-ALL subtypes is generated, this is the path where the plots should be saved
 ```
 
-  The T-ALL classification module creates two data frames in ```out``` one with expression for certain T-ALL marker genes and one with the prediction results.
-    The prediction results contain the following columns:
-    - sample: Sample ID
-    - 2-24 Scores: T-ALL subtype main- and sub-cluster predicitons scores
-    - 25-30 Predicitons: high-confidence and candidate level predictions for main-, sub-cluser and immature T-ALL (ETP-like)
-    - BC_pred: Blast count predictions score
-    - 32-57: ssGSEA to T-cell and hematopoietic developmental stages. Gene sets were defined from scRNA-seq data of thymic and hematopoietic cell types (https://www.science.org/doi/10.1126/science.aay3224)
-    - panHSPC, BMPlike_119: Recent studies have identified bone marrow progenitor (BMP)-like subpopulations in T-ALL and hematopoietic stem/progenitor cell-like (HSPC-like) populations across leukemias             associated with chemoresistance and poor outcomes. In this columns ssGSEA results to the gene sets defined for these populations as well as their percentile across all T-ALL samples are shown.
+The T-ALL classification module creates two data frames in ```out``` one with expression for certain T-ALL marker genes and one with the prediction results.
+The prediction results contain the following columns:
+- sample: Sample ID
+- 2-24 Scores: T-ALL subtype main- and sub-cluster predicitons scores
+- 25-30 Predicitons: high-confidence and candidate level predictions for main-, sub-cluser and immature T-ALL (ETP-like)
+- BC_pred: Blast count predictions score
+- 32-57: ssGSEA to T-cell and hematopoietic developmental stages. Gene sets were defined from scRNA-seq data of thymic and hematopoietic cell types (https://www.science.org/doi/10.1126/science.aay3224)
+- panHSPC, BMPlike_119: Recent studies have identified bone marrow progenitor (BMP)-like subpopulations in T-ALL and hematopoietic stem/progenitor cell-like (HSPC-like) populations across leukemias             associated with chemoresistance and poor outcomes. In this columns ssGSEA results to the gene sets defined for these populations as well as their percentile across all T-ALL samples are shown.
 ```
 
 
