@@ -10,7 +10,7 @@ allcatchr_1.1(Lineage = "B-ALL", Counts.file = NULL, ID_class = "symbol", sep = 
 \item{Lineage}{disease Lineage c("B-ALL","T-ALL")}
 \item{Counts.file}{count data provided as data frame object with genes in rows and samples in columns or a path to a text file}
 
-\item{ID_class}{gene ids used; c("symbol","ensemble_ID","entrez_ID")}
+\item{ID_class}{gene ids used; c("symbol","ensembl_ID","entrez_ID")}
 
 \item{sep}{file seperator}
 
