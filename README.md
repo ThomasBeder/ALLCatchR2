@@ -88,3 +88,6 @@ Arguments: same as in allcatchr_1
 ```
 
 The UMAP projection function module creates a data frame in ```out``` with the UMAP coordinates for each query sample and a UMAP plot.
+- T-ALL samples are projected in accordance to T-ALL subtypes. Low blast count samples are often unclassfied and tend to group towards the center of the UMAP plot. For comparison also projection of 10 B-ALL samples are shown.
+
+![image](UMAP_projection_example.png)
