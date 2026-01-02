@@ -22,7 +22,7 @@ devtools::install_github("ThomasBeder/ALLCatchR2")
 ```
 
 ## Quickstart
-If Counts.file is left ```NA``` ten test samples are predicted
+If Counts.file is left ```NA``` ten B-ALL test samples are predicted
 ```
 library(ALLCatchR2)
 out <- allcatchr_1.1()
@@ -31,34 +31,29 @@ out <- allcatchr_1.1()
 ## Run ALLCatchR2
 As input ALLCatchR2 requires a single text file in which the first column are the gene symbols/IDs and the other columns the count data for each sample
 
-T-ALL subtype classification
+- T-ALL subtype classification
 ```
 library(ALLCatchR2)
 out <- allcatchr_1.1(Lineage = "T-ALL", Counts.file = NULL, ID_class = "symbol", sep = "\t", out.file = "/path", plot.path = "/path")
 Arguments:
 - Lineage	= disease Lineage c("B-ALL","T-ALL")
 - Counts.file	= count data provided as data frame object with genes in rows and samples in columns or a path to a text file
-- ID_class	= gene ids used; c("symbol","ensemble_ID","entrez_ID")
+- ID_class	= gene ids used; c("symbol","ensembl_ID","entrez_ID")
+- sep = c("\t", " ", ",", ";")
+- out.file	= path and filename of the results table
+- plot.path	= for each sample a bar chart with the prediction scores for the individual T-ALL subtypes is generated, this is the path where the plots should be saved
+```
 
-sep	
-file seperator
+The T-ALL classification module creates two data frames in ```out``` one with expression for certain T-ALL marker genes and one with the prediction results.
+The prediction results contain the following columns:
+- sample: Sample ID
+- 2-24 Scores: T-ALL subtype main- and sub-cluster predicitons scores
+- 25-30 Predicitons: high-confidence and candidate level predictions for main-, sub-cluser and immature T-ALL (ETP-like)
+- BC_pred: Blast count predictions score
+- 32-57: ssGSEA to T-cell and hematopoietic developmental stages. Gene sets were defined from scRNA-seq data of thymic and hematopoietic cell types (https://www.science.org/doi/10.1126/science.aay3224)
+- Aditionally, expression of T-ALL marker and driver genes with expression statistic in T-ALL.
 
-out.file	
-output file path
 
-plot.path	
-path to prediction scores plots
-
-
-
-out <- allcatchr_1.1(Lineage = "B-ALL", Counts.file = NA, ID_class = "symbol", sep = "\t", out.file = "predictions.tsv")
-# out: For "B-ALL" a predicion table is written. For "T-ALL" aditionally, a list including T-ALL subtype predicitons, ssGSEA results to healthy T cell developmental stages and expression of
-T-ALL marker and driver genes with expression statistic in T-ALL.
-# Lineage: disease Lineage c("B-ALL","T-ALL")
-# Counts.file: /path/to/your/count/data, if left empty a test
-# ID_class: gene names can be either "symbol", "ensemble_ID" or	"entrez_ID"
-# sep: seperator of the text file usually "\t", "," or ";"
-# out.file: name of the output file
 ```
 
 
