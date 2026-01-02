@@ -9,6 +9,59 @@ The T-ALL subtype  prediction module of ALLCatchR was established on 2,314 T-ALL
 
 ![image](Visual_abstract.png)
 
+## Installation
+open RStudio
+install devtools and follow the installion guide https://github.com/r-lib/devtools
+```
+if (!require("devtools", quietly = TRUE))
+  install.packages("devtools")
+```
+install ALLCatchR2
+```
+devtools::install_github("ThomasBeder/ALLCatchR2")
+```
+
+## Quickstart
+If Counts.file is left ```NA``` ten test samples are predicted
+```
+library(ALLCatchR2)
+out <- allcatchr_1.1()
+```
+
+## Run ALLCatchR2
+As input ALLCatchR2 requires a single text file in which the first column are the gene symbols/IDs and the other columns the count data for each sample
+
+T-ALL subtype classification
+```
+library(ALLCatchR2)
+out <- allcatchr_1.1(Lineage = "T-ALL", Counts.file = NULL, ID_class = "symbol", sep = "\t", out.file = "/path", plot.path = "/path")
+Arguments:
+- Lineage	= disease Lineage c("B-ALL","T-ALL")
+- Counts.file	= count data provided as data frame object with genes in rows and samples in columns or a path to a text file
+- ID_class	= gene ids used; c("symbol","ensemble_ID","entrez_ID")
+
+sep	
+file seperator
+
+out.file	
+output file path
+
+plot.path	
+path to prediction scores plots
+
+
+
+out <- allcatchr_1.1(Lineage = "B-ALL", Counts.file = NA, ID_class = "symbol", sep = "\t", out.file = "predictions.tsv")
+# out: For "B-ALL" a predicion table is written. For "T-ALL" aditionally, a list including T-ALL subtype predicitons, ssGSEA results to healthy T cell developmental stages and expression of
+T-ALL marker and driver genes with expression statistic in T-ALL.
+# Lineage: disease Lineage c("B-ALL","T-ALL")
+# Counts.file: /path/to/your/count/data, if left empty a test
+# ID_class: gene names can be either "symbol", "ensemble_ID" or	"entrez_ID"
+# sep: seperator of the text file usually "\t", "," or ";"
+# out.file: name of the output file
+```
+
+
 
 # _BCR::ABL1_ gene expression subclusters
 <img src="https://github.com/ThomasBeder/ALLCatchR_bcrabl1/blob/main/ALLCatchRbcrabl1.png" width=100% height=100%>
