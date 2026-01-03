@@ -1,11 +1,10 @@
-# ALLCatchR2
+# ALLCatchR2 https://doi.org/10.64898/2026.01.01.697268
 **ALLCatchR** was developed to predict 42 acute lymphoblasctic leukemia subtypes based on gene expression count data. The B-ALL subtype classifier module was described in original ALLCatchR publications:
 - https://doi.org/10.1182/blood.2023021752 (https://github.com/ThomasBeder/ALLCatchR)
 - https://doi.org/10.1097/HS9.0000000000000939 (https://github.com/ThomasBeder/ALLCatchR_bcrabl1)
 
 # T-ALL subtype classification
 The T-ALL subtype  prediction module of ALLCatchR was established on 2,314 T-ALL samples from 15 cohorts (age: 0.8-90.08) and is able to predict 20 T-ALL gene expression subtypes and a driver overarching definition of immature T-ALL (ETP-like):
-- the preprint is available at https://doi.org/10.64898/2026.01.01.697268
 - https://library.ehaweb.org/eha/2025/eha2025-congress/4159185/thomas.beder.a.gene.expression.based.machine.learning.classifier.robustly.html?f=listing%3D4%2Abrowseby%3D8%2Asortby%3D2%2Amedia%3D3%2Aspeaker%3D1045302 
 
 ![image](Visual_abstract.png)
