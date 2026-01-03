@@ -24,11 +24,11 @@ Imports:
     elasticnet,
     singscore,
     ggplot2,
-    ggrepel
+    ggrepel,
+    umap
 Suggests:
     knitr,
-    rmarkdown,
-    umap    
+    rmarkdown        
 License: `use_mit_license()`
 VignetteBuilder: knitr
 RoxygenNote: 7.2.2
