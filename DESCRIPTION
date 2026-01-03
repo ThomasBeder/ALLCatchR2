@@ -15,15 +15,15 @@ Imports:
     utils,
     stats,
     caret,
+    glmnet,
     LiblineaR,
     kknn,
     randomForest,
+    ranger,
     caTools,
     elasticnet
 Suggests:
     singscore,
-    ranger,
-    glmnet,
     knitr,
     rmarkdown,
     umap,
