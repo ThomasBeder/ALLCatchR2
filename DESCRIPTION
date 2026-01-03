@@ -21,14 +21,15 @@ Imports:
     randomForest,
     ranger,
     caTools,
-    elasticnet
-Suggests:
+    elasticnet,
     singscore,
-    knitr,
-    rmarkdown,
-    umap,
     ggplot2,
     ggrepel
+Suggests:
+    knitr,
+    rmarkdown,
+    umap
+    
 License: `use_mit_license()`
 VignetteBuilder: knitr
 RoxygenNote: 7.2.2
