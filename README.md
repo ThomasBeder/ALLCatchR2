@@ -1,4 +1,4 @@
-# ALLCatchR2 preprint is available at 
+# ALLCatchR2 preprint is available at:
 # https://doi.org/10.64898/2026.01.01.697268
 **ALLCatchR** was developed to predict 42 acute lymphoblasctic leukemia subtypes based on gene expression count data. The B-ALL subtype classifier module was described in original ALLCatchR publications:
 - https://doi.org/10.1182/blood.2023021752 (https://github.com/ThomasBeder/ALLCatchR)
