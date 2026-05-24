@@ -76,8 +76,8 @@ Thie function projects T-ALL samples based on count data onto umap model
 library(ALLCatchR2)
 out <- allcatchr_projectTALL(Counts.file=NULL, ID_class="symbol", 
                                   sep="\t", 
-                                  out.file="/path/to/TALL_projection.tsv"), 
-                                  plot.file = "/path/to/TALL_projection.png"),
+                                  out.file="/path/to/TALL_projection.tsv", 
+                                  plot.file = "/path/to/TALL_projection.png",
                                   plot.width = 8, 
                                   plot.height = 6,
                                  label.size = 3)
