@@ -1203,7 +1203,7 @@ subtype_order <- c(
 "C2 (TAL1 DP-like)",
 "C3 (NKX2-1 other)",
 "C4 (NKX2-1 TCR)",
-"C5 (FOXF1/FENDRR, T-/MPAL)",
+"C5 (FOXF1/FENDRR)",
 "C6 (SPI1)",
 "C7 (STAG2/LMO2)",
 "C8 (BCL11B)",
