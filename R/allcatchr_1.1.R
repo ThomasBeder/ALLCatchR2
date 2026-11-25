@@ -85,7 +85,8 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
   }
   
   # impute missing genes
-  GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)], nrow = nrow(Counts.norm), ncol = length(GenesNoFound))
+  GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)],
+                            nrow = nrow(Counts.norm), ncol = length(GenesNoFound), byrow = TRUE)
   colnames(GenesNoFound_df) <- GenesNoFound
   Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
   
@@ -422,7 +423,8 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
   }
   
   # impute missing genes
-  GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)], nrow = nrow(Counts.norm), ncol = length(GenesNoFound))
+  GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)],
+                            nrow = nrow(Counts.norm), ncol = length(GenesNoFound), byrow = TRUE)
   colnames(GenesNoFound_df) <- GenesNoFound
   Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
   colnames(Counts.norm) <- colnames(Counts.norm)
@@ -497,7 +499,8 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
   }
   
   # impute missing genes
-  GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)], nrow = nrow(Counts.norm), ncol = length(GenesNoFound))
+  GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)],
+                            nrow = nrow(Counts.norm), ncol = length(GenesNoFound), byrow = TRUE)
   colnames(GenesNoFound_df) <- GenesNoFound
   Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
   colnames(Counts.norm) <- make.names(colnames(Counts.norm))
@@ -709,7 +712,8 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     }
     
     # impute missing genes
-    GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)], nrow = nrow(Counts.norm), ncol = length(GenesNoFound))
+    GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)],
+                              nrow = nrow(Counts.norm), ncol = length(GenesNoFound), byrow = TRUE)
     colnames(GenesNoFound_df) <- GenesNoFound
     Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
     
@@ -1123,7 +1127,8 @@ allcatchr_1.1 <- function(Lineage = "B-ALL",
     }
     
     # impute missing genes
-    GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)], nrow = nrow(Counts.norm), ncol = length(GenesNoFound))
+    GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)],
+                              nrow = nrow(Counts.norm), ncol = length(GenesNoFound), byrow = TRUE)
     colnames(GenesNoFound_df) <- GenesNoFound
     Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
                                                                             

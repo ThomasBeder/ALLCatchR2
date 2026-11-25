@@ -84,7 +84,8 @@ allcatchr_projectTALL <- function(Counts.file=NULL, ID_class="symbol",
   }
   
   # impute missing genes
-  GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)], nrow = nrow(Counts.norm), ncol = length(GenesNoFound))
+  GenesNoFound_df <- matrix(ID_conv$norm_exp[match(GenesNoFound, ID_conv$symbol)],
+                            nrow = nrow(Counts.norm), ncol = length(GenesNoFound), byrow = TRUE)
   colnames(GenesNoFound_df) <- GenesNoFound
   Counts.norm <- cbind(Counts.norm, GenesNoFound_df)
   
